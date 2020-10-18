@@ -1,9 +1,13 @@
 import React from 'react';
 
-function App() {
-  return (
-    <h1>Hello world</h1>
-  );
-}
+import HomeForm from './pages/HomeForm'
+import GlobalStyle from './styles/global';
+
+const App: React.FC = () => (
+  <>
+    <HomeForm />
+    <GlobalStyle />
+  </>
+);
 
 export default App;
