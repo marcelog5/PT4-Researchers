@@ -1,40 +1,44 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Header, Section, Logo, Bar, Background, Container, Button, Footer } from './styles';
+import { Header, Logo, Bar, Background, Container, Footer } from './styles';
 
-const HomeForm: React.FC = () => (
-  <>
-    <Header>
-      <Logo>
-        <h1>Logo</h1>
-      </Logo>
-      <Bar></Bar>
-    </Header>
+const HomeForm: React.FC = () => {
 
-    <Section>
+  return (
+    <>
+      <Header>
+        <Logo>
+          <h1>Logo</h1>
+        </Logo>
+        <Bar></Bar>
+      </Header>
+
       <Background>
         <Container>
           <h1>Teste das grande 5 personalidades</h1>
+
           <p>
             Esse é um método que tenta descrever a personalidade em 5 principais traços a partir
             de diversas questões que serão apresentadas a você.
           </p>
 
           <p>
-              Sua contribuição para esse teste influenciará nos estudos de diversos pesquisadores, por isso,
-              responda da maneira que mais se assemelha a você.
+            Sua contribuição para esse teste influenciará nos estudos de diversos pesquisadores, por isso,
+            responda da maneira que mais se assemelha a você.
           </p>
-          <Button>
-            <p>Comece aqui!</p>
-          </Button>
+
+          <Link to="/consentform">
+            <button>Comece aqui!</button>
+          </Link>
         </Container>
       </Background>
-    </Section>
 
-    <Footer>
-      <p>Foto do freepick</p>
-    </Footer>
-  </>
-);
+      <Footer>
+        <p>Foto do freepick</p>
+      </Footer>
+    </>
+  );/*  */
+};
 
 export default HomeForm;

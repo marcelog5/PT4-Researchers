@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
+
 import BackgroundImg from '../../assets/BackgroundHome.jpg';
 
 export const Header = styled.div`
@@ -18,15 +20,12 @@ export const Bar = styled.div`
   background-color: #c4f1f2;
 `;
 
-export const Section = styled.div`
-  width: 100%;
-  display: flex;
-`;
-
 export const Background = styled.div`
   background-image: url(${BackgroundImg});
-  background-size: 100% 100%;
-  width: 100vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
   height: 100vh;
   position: relative;
 `;
@@ -50,9 +49,8 @@ export const Container = styled.div`
     font-size: 16px;
     margin-bottom: 18px;
   }
-`;
 
-export const Button = styled.div`
+  button {
     width: 170px;
     margin-top: 15px;
     line-height: 24px;
@@ -64,8 +62,13 @@ export const Button = styled.div`
     background: #72E1D1;
     opacity: 1;
     cursor: pointer;
-`;
+    transition: background-color 0.2s;
+  }
 
+  button:hover {
+    background: ${shade(0.1, '#72E1D1')};
+  }
+`;
 
 export const Footer = styled.div`
   width: 100%;
