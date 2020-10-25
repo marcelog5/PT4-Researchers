@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Header, Logo, Bar, Background, Container, Footer } from './styles';
+import { Background, Container } from './styles';
+
+import UpBar from '../../components/UpBar';
+import DownBar from '../../components/DownBar';
+import ButtonDefault from '../../components/ButtonDefault';
 
 const HomeForm: React.FC = () => {
 
   return (
     <>
-      <Header>
-        <Logo>
-          <h1>Logo</h1>
-        </Logo>
-        <Bar></Bar>
-      </Header>
+      <UpBar/>
 
       <Background>
         <Container>
@@ -29,14 +28,12 @@ const HomeForm: React.FC = () => {
           </p>
 
           <Link to="/consentform">
-            <button>Comece aqui!</button>
+            <ButtonDefault type="button">Comece aqui!</ButtonDefault>
           </Link>
         </Container>
       </Background>
 
-      <Footer>
-        <p>Foto do freepick</p>
-      </Footer>
+      <DownBar/>
     </>
   );/*  */
 };
