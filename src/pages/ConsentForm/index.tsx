@@ -11,17 +11,20 @@ import { Background, Container, ResearchLink, ResearchTerm, ContainerButton } fr
 
 
 interface Question {
+  id: string;
   question: string;
   inverted: boolean;
   trait: string;
   factor: string;
+  questionNumber: number;
 }
 
 interface Inventory {
   id: string;
   author: string;
   numberOfQuestions: number;
-  question: Question[];
+  inventoryName: string;
+  questions: Question[];
 }
 
 interface Form {
@@ -36,12 +39,10 @@ const ConsentForm: React.FC = () => {
   const [forms, setForms] = useState<Form>();
 
   useEffect(() => {
-    api.get('forms/46582820-ecc6-4530-bff6-ce3c44167e81').then(response => {
+    api.get('forms/1b91ed39-1fcd-4862-8a23-51d6d9f336b4').then(response => {
       setForms(response.data);
     });
   }, []);
-
-
 
   return (
     <>
@@ -65,7 +66,12 @@ const ConsentForm: React.FC = () => {
               </ButtonDefault>
             </Link>
 
-            <Link to="/questionsform">
+            <Link to={{
+              pathname: "/questionsform",
+              state: {
+                pass: forms
+              }
+            }}>
               <ButtonDefault type="button">
                 Aceito
               </ButtonDefault>
