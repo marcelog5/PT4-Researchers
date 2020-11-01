@@ -1,10 +1,11 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
 import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
+import ButtonDefault from '../../components/ButtonDefault';
 
-import { Background, Container } from './styles';
+import { Background, Container, ContainerButton } from './styles';
 
 interface Question {
   id: string;
@@ -36,11 +37,21 @@ interface Form {
 const QuestionsForm: React.FC = () => {
   const location = useLocation<Form>();
   const questions = location.state.pass.inventory.questions;
-  console.log(questions);
+  
+  const [selectedQuestions, setSelectedQuestions] = useState<number[]>([]);
+
+  function handleSelectedAnswer(id: number, optionNumber: number) {
+    let selected = [];
+
+    selected = selectedQuestions.map(question => question);
+    selected[id - 1] = optionNumber;
+
+    setSelectedQuestions(selected);
+  }
 
   return (
     <>
-      <UpBar />
+      {/* <UpBar /> */}
 
       <Background>
         <Container>
@@ -52,46 +63,72 @@ const QuestionsForm: React.FC = () => {
                     <p>{questions.question}</p>
 
                     <div className="radio-group">
+                      <span>
+                        Discordo
+                      </span>
+
                       <input type="radio" id="option-one" name={`selector${questions.id}`} />
                       <label
                         htmlFor="option-one"
+                        onClick={() => handleSelectedAnswer(questions.questionNumber, 1)}
+                        className={selectedQuestions[questions.questionNumber - 1] === 1 ? 'selected' : ''}
                       >
-                        Muito preciso
+                        1
                       </label>
 
                       <input type="radio" id="option-two" name={`selector${questions.id}`} />
                       <label
                         htmlFor="option-two"
+                        onClick={() => handleSelectedAnswer(questions.questionNumber, 2)}
+                        className={selectedQuestions[questions.questionNumber - 1] === 2 ? 'selected' : ''}
                       >
-                        Moderadamente preciso
+                        2
                       </label>
 
                       <input type="radio" id="option-three" name={`selector${questions.id}`} />
                       <label
                         htmlFor="option-three"
+                        onClick={() => handleSelectedAnswer(questions.questionNumber, 3)}
+                        className={selectedQuestions[questions.questionNumber - 1] === 3 ? 'selected' : ''}
                       >
-                        Nem impreciso nem preciso
+                        3
                       </label>
 
                       <input type="radio" id="option-four" name={`selector${questions.id}`} />
                       <label
                         htmlFor="option-four"
+                        onClick={() => handleSelectedAnswer(questions.questionNumber, 4)}
+                        className={selectedQuestions[questions.questionNumber - 1] === 4 ? 'selected' : ''}
                       >
-                        Moderadamente impreciso
+                        4
                       </label>
 
                       <input type="radio" id="option-five" name={`selector${questions.id}`} />
                       <label
                         htmlFor="option-five"
+                        onClick={() => handleSelectedAnswer(questions.questionNumber, 5)}
+                        className={selectedQuestions[questions.questionNumber - 1] === 5 ? 'selected' : ''}
                       >
-                        Muito impreciso
+                        5
                       </label>
+
+                      <span>
+                        Concordo
+                      </span>
                     </div>
                   </li>
                 );
               })}
             </ul>
           </form>
+
+          <ContainerButton>
+            <Link to="/">
+              <ButtonDefault type="button">
+                Continuar
+              </ButtonDefault>
+            </Link>
+          </ContainerButton>
         </Container>
       </Background>
 
@@ -101,58 +138,3 @@ const QuestionsForm: React.FC = () => {
 };
 
 export default QuestionsForm;
-
-// {questions.map(question => {
-//   return (
-//       <li key={question.id}>
-//           <p>{question.question}</p>
-
-//           <div className="radio-group">
-//               <input type="radio" id="option-one" name={`selector${question.id}`} />
-//               <label
-//                   onClick={() => handleSelectedAnswer(question.id, 1)}
-//                   htmlFor="option-one"
-//                   className={selectedQuestions[question.id - 1] === 1 ? 'selected' : ''}
-//               >
-//                   Muito preciso
-//               </label>
-
-//               <input type="radio" id="option-two" name={`selector${question.id}`} />
-//               <label
-//                   onClick={() => handleSelectedAnswer(question.id, 2)}
-//                   htmlFor="option-two"
-//                   className={selectedQuestions[question.id - 1] === 2 ? 'selected' : ''}
-//               >
-//                   Moderadamente impreciso
-//               </label>
-
-//               <input type="radio" id="option-three" name={`selector${question.id}`} />
-//               <label
-//                   onClick={() => handleSelectedAnswer(question.id, 3)}
-//                   htmlFor="option-three"
-//                   className={selectedQuestions[question.id - 1] === 3 ? 'selected' : ''}
-//               >
-//                   Nem impreciso nem preciso
-//               </label>
-
-//               <input type="radio" id="option-four" name={`selector${question.id}`} />
-//               <label
-//                   onClick={() => handleSelectedAnswer(question.id, 4)}
-//                   htmlFor="option-four"
-//                   className={selectedQuestions[question.id - 1] === 4 ? 'selected' : ''}
-//               >
-//                   Moderadamente preciso
-//               </label>
-
-//               <input type="radio" id="option-five" name={`selector${question.id}`} />
-//               <label
-//                   onClick={() => handleSelectedAnswer(question.id, 5)}
-//                   htmlFor="option-five"
-//                   className={selectedQuestions[question.id - 1] === 5 ? 'selected' : ''}
-//               >
-//                   Muito preciso
-//               </label>
-//           </div>
-//       </li>
-//   );
-// })}

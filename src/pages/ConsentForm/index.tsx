@@ -39,14 +39,14 @@ const ConsentForm: React.FC = () => {
   const [forms, setForms] = useState<Form>();
 
   useEffect(() => {
-    api.get('forms/1b91ed39-1fcd-4862-8a23-51d6d9f336b4').then(response => {
+    api.get('forms/ef523bcc-b3d1-44d5-b726-4bf7e97bdc04').then(response => {
       setForms(response.data);
     });
   }, []);
 
   return (
     <>
-      <UpBar />
+      {/* <UpBar /> */}
 
       <Background>
         <Container>

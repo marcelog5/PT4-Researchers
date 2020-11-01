@@ -11,14 +11,14 @@ const HomeForm: React.FC = () => {
 
   return (
     <>
-      <UpBar/>
+      {/* <UpBar/> */}
 
       <Background>
         <Container>
-          <h1>Teste das grande 5 personalidades</h1>
+          <h1>Teste do Big 5</h1>
 
           <p>
-            Esse é um método que tenta descrever a personalidade em 5 principais traços a partir
+            Esse é um método que tenta descrever a sua personalidade em 5 principais traços a partir
             de diversas questões que serão apresentadas a você.
           </p>
 

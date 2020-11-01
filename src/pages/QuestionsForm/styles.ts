@@ -8,7 +8,6 @@ export const Background = styled.div`
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: 100vh;
   position: relative;
 `;
 
@@ -29,7 +28,7 @@ export const Container = styled.div`
   }
 
   li p{
-    margin: 40px 0;
+    margin: 40px 0 10px 0;
     font-size: 22px;
   }
 
@@ -40,10 +39,25 @@ export const Container = styled.div`
   }
 
   label {
-      height: 100%;
-      width: 20%;
+      display: inline-block;
+      border-radius: 60px;
+      height: 60px;
+      width: 60px;
+      line-height: 60px;
+      background-color: #E8F8F8;
       cursor: pointer;
       font-weight: bold;
       margin: 30px;
+      transition: 1s;
   }
+
+  .selected {
+    background-color: #77BABA;
+  }
+`
+
+export const ContainerButton = styled.div`
+  display: flex;
+  display: 1;
+  margin: 40px 2% 80px 2%;
 `
