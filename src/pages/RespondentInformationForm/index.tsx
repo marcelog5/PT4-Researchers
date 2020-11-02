@@ -1,5 +1,7 @@
-import React, { useEffect, useState, ChangeEvent } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
+
+import api from '../../services/api';
 import axios from 'axios';
 
 import { Background, Container, ContainerButton } from './styles';
@@ -11,14 +13,48 @@ interface IBGECityResponse {
   nome: string;
 }
 
+interface Question {
+  id: string;
+  question: string;
+  inverted: boolean;
+  trait: string;
+  factor: string;
+  questionNumber: number;
+}
+
+interface Inventory {
+  id: string;
+  author: string;
+  numberOfQuestions: number;
+  inventoryName: string;
+  questions: Question[];
+}
+
+interface QuestionsAnswer {
+  passAnswer: {
+    selectedQuestions: number[];
+  }
+
+  passForm: {
+    id: string;
+    name: string;
+    term: string;
+    link: string;
+    inventory: Inventory;
+  }
+}
+
 const RespondentInformationForm: React.FC = () => {
   const today = new Date();
+  const location = useLocation<QuestionsAnswer>();
+  const history = useHistory();
 
   const [cities, setCities] = useState<string[]>([]);
 
   const [selectedCity, setSelectedCity] = useState('0');
   const [selectedSchooling, setSelectedSchooling] = useState('0');
   const [selectedGender, setSelectedGender] = useState('0');
+  const [selectedAge, setSelectedAge] = useState<string>('1900-12-12');
 
 
   useEffect(() => {
@@ -47,16 +83,53 @@ const RespondentInformationForm: React.FC = () => {
     setSelectedCity(city);
   }
 
+  function handleSelectAge(event: ChangeEvent<HTMLInputElement>) {
+    const age = event.target.value;
+
+    setSelectedAge(age.toString());
+  }
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+
+    const gender = selectedGender
+    const schooling = selectedSchooling;
+    const age = selectedAge;
+    const state = selectedCity;
+    const questionsAnswer = location.state.passAnswer;
+    const form_id = location.state.passForm.id;
+
+    const data = {
+      gender,
+      schooling,
+      age,
+      state,
+      questionsAnswer,
+      form_id
+    };
+
+    await api.post('respondents', data)
+        .then((response) => {
+            history.push('/', response.data);
+        }, (error) => {
+            alert('Erro no envio');
+            return;
+        });
+  }
+
+
   return (
     <>
       {/* <UpBar/> */}
 
       <Background>
         <Container>
-         <form>
+         <form onSubmit={handleSubmit}>
             <label>Data de nascimento</label>
              <input
               type="date"
+              onChange={handleSelectAge}
+              value={selectedAge.toString()}
               max={`${today.getFullYear() - 10}-01-01`}
               min="1900-06-01"
              />
@@ -95,11 +168,9 @@ const RespondentInformationForm: React.FC = () => {
             </select>
 
             <ContainerButton>
-              <Link to="/respondentinformationform">
-                <ButtonDefault type="button">
+                <ButtonDefault type="submit">
                   Enviar
                 </ButtonDefault>
-              </Link>
             </ContainerButton>
           </form>
         </Container>

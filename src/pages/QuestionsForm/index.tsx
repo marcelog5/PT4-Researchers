@@ -37,8 +37,10 @@ interface Form {
 const QuestionsForm: React.FC = () => {
   const location = useLocation<Form>();
   const questions = location.state.pass.inventory.questions;
-  
+  const numberQuestions = location.state.pass.inventory.numberOfQuestions;
+
   const [selectedQuestions, setSelectedQuestions] = useState<number[]>([]);
+  const [questionsShow, setQuestionsShow] = useState<number>(5);
 
   function handleSelectedAnswer(id: number, optionNumber: number) {
     let selected = [];
@@ -49,6 +51,14 @@ const QuestionsForm: React.FC = () => {
     setSelectedQuestions(selected);
   }
 
+  function handleContinueButton() {
+    let questionShow;
+
+    questionShow = questionsShow;
+
+    setQuestionsShow(questionShow + 5);
+  }
+
   return (
     <>
       {/* <UpBar /> */}
@@ -57,7 +67,7 @@ const QuestionsForm: React.FC = () => {
         <Container>
           <form>
             <ul>
-              {questions.map(questions => {
+              {questions.slice(questionsShow - 5,questionsShow).map(questions => {
                 return (
                   <li key={questions.id}>
                     <p>{questions.question}</p>
@@ -122,8 +132,20 @@ const QuestionsForm: React.FC = () => {
             </ul>
           </form>
 
-          <ContainerButton>
-            <Link to="/respondentinformationform">
+          <ContainerButton display={numberQuestions - 1 < questionsShow ? 'none' : 'flex'}>
+              <ButtonDefault type="button" onClick={handleContinueButton}>
+                Continuar
+              </ButtonDefault>
+          </ContainerButton>
+
+          <ContainerButton display={numberQuestions - 1 >= questionsShow ? 'none' : 'flex'}>
+            <Link to={{
+              pathname: "/respondentinformationform",
+              state: {
+                passForm: location.state.pass,
+                passAnswer: selectedQuestions
+              }
+            }}>
               <ButtonDefault type="button">
                 Continuar
               </ButtonDefault>

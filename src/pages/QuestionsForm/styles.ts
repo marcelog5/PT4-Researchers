@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import BackgroundImg from '../../assets/BackgroundBase.jpg';
 
+interface ContainerProps {
+  display:string
+}
+
 export const Background = styled.div`
   background-image: url(${BackgroundImg});
   background-repeat: no-repeat;
@@ -54,10 +58,10 @@ export const Container = styled.div`
   .selected {
     background-color: #77BABA;
   }
-`
+`;
 
-export const ContainerButton = styled.div`
-  display: flex;
+export const ContainerButton = styled.div<ContainerProps>`
+  display: ${(props) => props.display};
   display: 1;
   margin: 40px 2% 80px 2%;
-`
+`;
