@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 
-import UpBar from '../../components/UpBar';
+// import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
 
@@ -123,7 +123,7 @@ const QuestionsForm: React.FC = () => {
           </form>
 
           <ContainerButton>
-            <Link to="/">
+            <Link to="/respondentinformationform">
               <ButtonDefault type="button">
                 Continuar
               </ButtonDefault>

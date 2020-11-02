@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Background, Container } from './styles';
 
-import UpBar from '../../components/UpBar';
+// import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
 
