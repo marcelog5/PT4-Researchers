@@ -5,4 +5,9 @@ export const Footer = styled.div`
   height: 40px;
   color: white;
   background-color: black;
+
+  p {
+    text-align:center;
+    font-size: 12px;
+  }
 `;

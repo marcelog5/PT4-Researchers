@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { Background, Container } from './styles';
 
@@ -8,6 +8,9 @@ import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
 
 const HomeForm: React.FC = () => {
+  const location = useLocation();
+
+  console.log(location.pathname.substring(10));
 
   return (
     <>
@@ -27,7 +30,12 @@ const HomeForm: React.FC = () => {
             responda da maneira que mais se assemelha a você.
           </p>
 
-          <Link to="/consentform">
+          <Link to={{
+              pathname: "/consentform",
+              state: {
+                passLink: location.pathname.substring(10)
+              }
+            }}>
             <ButtonDefault type="button">Comece aqui!</ButtonDefault>
           </Link>
         </Container>

@@ -59,6 +59,14 @@ const QuestionsForm: React.FC = () => {
     setQuestionsShow(questionShow + 5);
   }
 
+  function handleBackButton() {
+    let questionShow;
+
+    questionShow = questionsShow;
+
+    setQuestionsShow(questionShow - 5);
+  }
+
   return (
     <>
       {/* <UpBar /> */}
@@ -132,25 +140,33 @@ const QuestionsForm: React.FC = () => {
             </ul>
           </form>
 
-          <ContainerButton display={numberQuestions - 1 < questionsShow ? 'none' : 'flex'}>
-              <ButtonDefault type="button" onClick={handleContinueButton}>
-                Continuar
-              </ButtonDefault>
-          </ContainerButton>
+          <section>
+            <ContainerButton display={5 + 1 < questionsShow ? 'flex' : 'none'}>
+                <ButtonDefault type="button" onClick={handleBackButton}>
+                  Voltar
+                </ButtonDefault>
+            </ContainerButton>
 
-          <ContainerButton display={numberQuestions - 1 >= questionsShow ? 'none' : 'flex'}>
-            <Link to={{
-              pathname: "/respondentinformationform",
-              state: {
-                passForm: location.state.pass,
-                passAnswer: selectedQuestions
-              }
-            }}>
-              <ButtonDefault type="button">
-                Continuar
-              </ButtonDefault>
-            </Link>
-          </ContainerButton>
+            <ContainerButton display={numberQuestions - 1 < questionsShow ? 'none' : 'flex'}>
+                <ButtonDefault type="button" onClick={handleContinueButton}>
+                  Continuar
+                </ButtonDefault>
+            </ContainerButton>
+
+            <ContainerButton display={numberQuestions - 1 >= questionsShow ? 'none' : 'flex'}>
+              <Link to={{
+                pathname: "/respondentinformationform",
+                state: {
+                  passForm: location.state.pass,
+                  passAnswer: selectedQuestions
+                }
+              }}>
+                <ButtonDefault type="button">
+                  Continuar
+                </ButtonDefault>
+              </Link>
+            </ContainerButton>
+          </section>
         </Container>
       </Background>
 

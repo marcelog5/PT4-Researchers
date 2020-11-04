@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -35,14 +35,25 @@ interface Form {
   inventory: Inventory;
 }
 
+interface LinkForm {
+  passLink: string;
+}
+
 const ConsentForm: React.FC = () => {
+  const location = useLocation<LinkForm>();
+  const history = useHistory();
+
   const [forms, setForms] = useState<Form>();
 
   useEffect(() => {
-    api.get('forms/ef523bcc-b3d1-44d5-b726-4bf7e97bdc04').then(response => {
-      setForms(response.data);
+    api.get('forms/' + location.state.passLink).then(response => {
+      if(response.data.message === 'Form not found.'){
+        history.push('/formnotexist');
+      } else {
+        setForms(response.data);
+      }
     });
-  }, []);
+  }, [location.state.passLink, history]);
 
   return (
     <>

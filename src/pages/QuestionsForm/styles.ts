@@ -55,6 +55,12 @@ export const Container = styled.div`
       transition: 1s;
   }
 
+  section {
+    display: flex;
+    flex-direction: row;
+    margin: 40px 2% 80px 2%;
+  }
+
   .selected {
     background-color: #77BABA;
   }
@@ -62,6 +68,5 @@ export const Container = styled.div`
 
 export const ContainerButton = styled.div<ContainerProps>`
   display: ${(props) => props.display};
-  display: 1;
-  margin: 40px 2% 80px 2%;
+  padding: 0 60px;
 `;

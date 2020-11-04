@@ -4,7 +4,7 @@ import { Footer } from './styles';
 
 const DownBar: React.FC = () => (
   <Footer>
-    <p>Foto do freepick</p>
+    <p>imagem obtida pelo freepick</p>
   </Footer>
 );
 
