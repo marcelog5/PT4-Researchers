@@ -6,6 +6,7 @@ import ConsentForm from '../pages/ConsentForm';
 import QuestionsForm from '../pages/QuestionsForm';
 import RespondentInformationForm from '../pages/RespondentInformationForm';
 import RedirectPage from '../pages/RedirectPage';
+import FinishFormPage from '../pages/FinishFormPage';
 
 const Routes: React.FC = () => (
     <Switch>
@@ -14,6 +15,7 @@ const Routes: React.FC = () => (
         <Route path='/questionsform' component={QuestionsForm}/>
         <Route path='/respondentinformationform' component={RespondentInformationForm}/>
         <Route path='/formnotexist' component={RedirectPage}/>
+        <Route path='/finishform' component={FinishFormPage}/>
     </Switch>
 );
 
