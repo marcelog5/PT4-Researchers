@@ -54,7 +54,7 @@ const RespondentInformationForm: React.FC = () => {
   const [selectedCity, setSelectedCity] = useState('0');
   const [selectedSchooling, setSelectedSchooling] = useState('0');
   const [selectedGender, setSelectedGender] = useState('0');
-  const [selectedAge, setSelectedAge] = useState<string>('1900-12-12');
+  const [selectedAge, setSelectedAge] = useState<string>(`${today.getFullYear() - 2}-01-01`);
 
 
   useEffect(() => {
@@ -110,7 +110,7 @@ const RespondentInformationForm: React.FC = () => {
 
     await api.post('respondents', data)
         .then((response) => {
-            history.push('/', response.data);
+            history.push('/finishform', response.data);
         }, (error) => {
             alert('Erro no envio');
             return;
@@ -130,7 +130,7 @@ const RespondentInformationForm: React.FC = () => {
               type="date"
               onChange={handleSelectAge}
               value={selectedAge.toString()}
-              max={`${today.getFullYear() - 10}-01-01`}
+              max={`${today.getFullYear() - 1}-01-01`}
               min="1900-06-01"
              />
 

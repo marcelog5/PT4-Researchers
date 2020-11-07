@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { ProgressBar, Alert } from 'react-bootstrap';
 
 // import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
 
-import { Background, Container, ContainerButton } from './styles';
+import { Background, Container, ContainerButton} from './styles';
 
 interface Question {
   id: string;
@@ -41,6 +42,7 @@ const QuestionsForm: React.FC = () => {
 
   const [selectedQuestions, setSelectedQuestions] = useState<number[]>([]);
   const [questionsShow, setQuestionsShow] = useState<number>(5);
+  const [show, setShow] = useState(false);
 
   function handleSelectedAnswer(id: number, optionNumber: number) {
     let selected = [];
@@ -53,11 +55,41 @@ const QuestionsForm: React.FC = () => {
 
   function handleContinueButton() {
     let questionShow;
+    let i = 0;
 
     questionShow = questionsShow;
 
+    selectedQuestions.forEach(question => {
+      i++;
+    });
+
+    if(i < questionShow) {
+      setShow(true);
+      return;
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
     setQuestionsShow(questionShow + 5);
   }
+
+  function AlertQuestion() {
+    if (show) {
+      return (
+        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Marque todos os itens</Alert.Heading>
+          <p>
+            Parece que você ainda não marcou todos os itens
+          </p>
+        </Alert>
+      );
+    }
+    return <div style={{ display: "none" }}></div>;
+  }
+
 
   function handleBackButton() {
     let questionShow;
@@ -73,6 +105,10 @@ const QuestionsForm: React.FC = () => {
 
       <Background>
         <Container>
+        <ProgressBar now={selectedQuestions.length * 100 / numberQuestions} label={`${selectedQuestions.length * 100 / numberQuestions}%`}/>
+
+        <AlertQuestion />
+
           <form>
             <ul>
               {questions.slice(questionsShow - 5,questionsShow).map(questions => {

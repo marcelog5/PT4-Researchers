@@ -19,12 +19,19 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
   text-align: center;
   align-items: center;
 
-  form{
+  .alert {
+    position: fixed;
     margin-top: 100px;
+    background-color: #FFBFB9;
+  }
+
+  form{
+    margin-top: 50px;
   }
 
   li {
@@ -59,6 +66,19 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     margin: 40px 2% 80px 2%;
+  }
+
+  .progress {
+    margin-top: 30px;
+    width: 50%;
+    height: 28px;
+    border-radius: 20px;
+    background-color: #CCEFF1;
+    position: fixed;
+  }
+
+  .progress-bar {
+    background-color: #77BABA;
   }
 
   .selected {
