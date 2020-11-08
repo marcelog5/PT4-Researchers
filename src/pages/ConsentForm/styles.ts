@@ -25,16 +25,26 @@ export const Container = styled.div`
 `
 
 export const ResearchLink = styled.div`
-  margin: 40px 2%;
+  margin: 40px 2% 20px 2%;
+  text-align: center;
+
+  p {
+    font-weight: 700;
+  }
 `;
 
 export const ResearchTerm = styled.div`
-  margin: 40px 2%;
+  margin: 40px 2% 20px 2%;
+  text-align: center;
+
+  p:first-of-type {
+    font-weight: 700;
+  }
 `;
 
 export const ContainerButton = styled.div`
   display: flex;
   display: 1;
   justify-content: space-between;
-  margin: 40px 2%;
+  margin: 20px 2% 40px 2%;;
 `;

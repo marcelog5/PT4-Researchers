@@ -31,7 +31,8 @@ interface Form {
     term: string;
     link: string;
     inventory: Inventory;
-  }
+  },
+  passLink: string;
 }
 
 const TutorialForm: React.FC = () => {
@@ -63,10 +64,17 @@ const TutorialForm: React.FC = () => {
             </p>
           </div>
           <ContainerButton>
+            <Link to={`/homeform/${location.state.passLink}`}>
+              <ButtonDefault type="button">
+                Voltar
+              </ButtonDefault>
+            </Link>
+
             <Link to={{
               pathname: "/questionsform",
               state: {
-                pass: location.state.pass
+                pass: location.state.pass,
+                passLink: location.state.passLink,
               }
             }}>
               <ButtonDefault type="button">

@@ -32,7 +32,8 @@ interface Form {
     term: string;
     link: string;
     inventory: Inventory;
-  }
+  },
+  passLink: string;
 }
 
 const QuestionsForm: React.FC = () => {
@@ -43,8 +44,6 @@ const QuestionsForm: React.FC = () => {
   const [selectedQuestions, setSelectedQuestions] = useState<number[]>([]);
   const [questionsShow, setQuestionsShow] = useState<number>(5);
   const [show, setShow] = useState(false);
-
-  console.log(location.state.pass);
 
   function handleSelectedAnswer(id: number, optionNumber: number) {
     let selected = [];
@@ -179,6 +178,14 @@ const QuestionsForm: React.FC = () => {
           </form>
 
           <section>
+            <ContainerButton display={5 === questionsShow ? 'flex' : 'none'}>
+              <Link to={`/homeform/${location.state.passLink}`}>
+                <ButtonDefault type="button">
+                  Voltar
+                </ButtonDefault>
+              </Link>
+            </ContainerButton>
+
             <ContainerButton display={5 + 1 < questionsShow ? 'flex' : 'none'}>
                 <ButtonDefault type="button" onClick={handleBackButton}>
                   Voltar
@@ -196,7 +203,8 @@ const QuestionsForm: React.FC = () => {
                 pathname: "/respondentinformationform",
                 state: {
                   passForm: location.state.pass,
-                  passAnswer: selectedQuestions
+                  passAnswer: selectedQuestions,
+                  passLink: location.state.passLink,
                 }
               }}>
                 <ButtonDefault type="button">

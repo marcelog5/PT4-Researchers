@@ -1,5 +1,6 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
+import { Alert } from 'react-bootstrap';
 
 import api from '../../services/api';
 import axios from 'axios';
@@ -33,15 +34,15 @@ interface Inventory {
 interface QuestionsAnswer {
   passAnswer: {
     selectedQuestions: number[];
-  }
-
+  },
   passForm: {
     id: string;
     name: string;
     term: string;
     link: string;
     inventory: Inventory;
-  }
+  },
+  passLink: string;
 }
 
 const RespondentInformationForm: React.FC = () => {
@@ -55,6 +56,7 @@ const RespondentInformationForm: React.FC = () => {
   const [selectedSchooling, setSelectedSchooling] = useState('0');
   const [selectedGender, setSelectedGender] = useState('0');
   const [selectedAge, setSelectedAge] = useState<string>(`${today.getFullYear() - 2}-01-01`);
+  const [show, setShow] = useState(false);
 
 
   useEffect(() => {
@@ -99,6 +101,11 @@ const RespondentInformationForm: React.FC = () => {
     const questionsAnswer = location.state.passAnswer;
     const form_id = location.state.passForm.id;
 
+    if(gender === "0" || schooling === "0" || state === "0"){
+      setShow(true);
+      return;
+    }
+
     const data = {
       gender,
       schooling,
@@ -110,11 +117,30 @@ const RespondentInformationForm: React.FC = () => {
 
     await api.post('respondents', data)
         .then((response) => {
-            history.push('/finishform', response.data);
+            history.push({
+              pathname: '/finishform',
+              state: {
+                passForm: location.state.passForm,
+              }
+            });
         }, (error) => {
             alert('Erro no envio');
             return;
         });
+  }
+
+  function AlertQuestion() {
+    if (show) {
+      return (
+        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Marque todos os itens</Alert.Heading>
+          <p>
+            Parece que você ainda não marcou todos os itens
+          </p>
+        </Alert>
+      );
+    }
+    return <div style={{ display: "none" }}></div>;
   }
 
 
@@ -124,6 +150,8 @@ const RespondentInformationForm: React.FC = () => {
 
       <Background>
         <Container>
+          <AlertQuestion/>
+
           <h1>Fale sobre você</h1>
 
           <form onSubmit={handleSubmit}>
@@ -170,9 +198,15 @@ const RespondentInformationForm: React.FC = () => {
             </select>
 
             <ContainerButton>
-                <ButtonDefault type="submit">
-                  Enviar
+              <Link to={`/homeform/${location.state.passLink}`}>
+                <ButtonDefault type="button">
+                  Voltar
                 </ButtonDefault>
+              </Link>
+
+              <ButtonDefault type="submit">
+                Enviar
+              </ButtonDefault>
             </ContainerButton>
           </form>
         </Container>

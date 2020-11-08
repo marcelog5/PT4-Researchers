@@ -62,16 +62,17 @@ const ConsentForm: React.FC = () => {
       <Background>
         <Container>
           <ResearchLink>
-            <p>Link para o Termo de consentimento do pesquisador: <a href={forms?.link}>{forms?.link}</a></p>
+            <p>Link para o Termo de consentimento do pesquisador</p>
+            <a href={forms?.link} target="_blanck">{forms?.link}</a>
           </ResearchLink>
 
           <ResearchTerm>
-            <p>Termo de consentimento escrito: </p>
+            <p>Termo de consentimento do pesquisador</p>
             <p>{forms?.term}</p>
           </ResearchTerm>
 
           <ContainerButton>
-            <Link to="/">
+            <Link to={`/homeform/${location.state.passLink}`}>
               <ButtonDefault type="button">
                 Cancelar
               </ButtonDefault>
@@ -80,7 +81,8 @@ const ConsentForm: React.FC = () => {
             <Link to={{
               pathname: "/tutorialform",
               state: {
-                pass: forms
+                pass: forms,
+                passLink: location.state.passLink,
               }
             }}>
               <ButtonDefault type="button">

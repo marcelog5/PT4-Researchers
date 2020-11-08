@@ -20,6 +20,12 @@ export const Container = styled.div`
   text-align: center;
   align-items: center;
 
+  .alert {
+    position: fixed;
+    margin-top: 100px;
+    background-color: #FFBFB9;
+  }
+
   h1 {
     margin-top: 40px;
   }
@@ -56,7 +62,9 @@ export const Container = styled.div`
 `;
 
 export const ContainerButton = styled.div`
+  width: 90%;
   display: flex;
   display: 1;
+  justify-content: space-between;
   margin: 60px auto;
 `;

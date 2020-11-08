@@ -58,6 +58,6 @@ export const Container = styled.div`
 export const ContainerButton = styled.div`
   display: flex;
   display: 1;
-  justify-content: center;
+  justify-content: space-between;
   margin: 40px 2%;
 `;

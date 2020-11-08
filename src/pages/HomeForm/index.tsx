@@ -10,8 +10,6 @@ import ButtonDefault from '../../components/ButtonDefault';
 const HomeForm: React.FC = () => {
   const location = useLocation();
 
-  console.log(location.pathname.substring(10));
-
   return (
     <>
       {/* <UpBar/> */}
