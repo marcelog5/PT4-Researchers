@@ -20,8 +20,12 @@ export const Container = styled.div`
   text-align: center;
   align-items: center;
 
+  h1 {
+    margin-top: 40px;
+  }
+
   form {
-    margin: 60px 2% 40px 2%;
+    margin: 30px 2% 40px 2%;
     display: flex;
     flex-direction: column;
   }

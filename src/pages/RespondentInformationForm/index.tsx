@@ -124,7 +124,9 @@ const RespondentInformationForm: React.FC = () => {
 
       <Background>
         <Container>
-         <form onSubmit={handleSubmit}>
+          <h1>Fale sobre você</h1>
+
+          <form onSubmit={handleSubmit}>
             <label>Data de nascimento</label>
              <input
               type="date"

@@ -78,7 +78,7 @@ const ConsentForm: React.FC = () => {
             </Link>
 
             <Link to={{
-              pathname: "/questionsform",
+              pathname: "/tutorialform",
               state: {
                 pass: forms
               }

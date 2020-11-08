@@ -44,22 +44,22 @@ export const Container = styled.div`
   }
 
   input[type=radio] {
-      position: absolute;
-      visibility: hidden;
-      display: none;
+    position: absolute;
+    visibility: hidden;
+    display: none;
   }
 
   label {
-      display: inline-block;
-      border-radius: 60px;
-      height: 60px;
-      width: 60px;
-      line-height: 60px;
-      background-color: #E8F8F8;
-      cursor: pointer;
-      font-weight: bold;
-      margin: 30px;
-      transition: 1s;
+    display: inline-block;
+    border-radius: 60px;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    background-color: #E8F8F8;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 30px;
+    transition: 1s;
   }
 
   section {

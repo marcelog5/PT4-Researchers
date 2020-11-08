@@ -7,6 +7,7 @@ import QuestionsForm from '../pages/QuestionsForm';
 import RespondentInformationForm from '../pages/RespondentInformationForm';
 import RedirectPage from '../pages/RedirectPage';
 import FinishFormPage from '../pages/FinishFormPage';
+import TutorialForm from '../pages/TutorialForm';
 
 const Routes: React.FC = () => (
     <Switch>
@@ -16,6 +17,7 @@ const Routes: React.FC = () => (
         <Route path='/respondentinformationform' component={RespondentInformationForm}/>
         <Route path='/formnotexist' component={RedirectPage}/>
         <Route path='/finishform' component={FinishFormPage}/>
+        <Route path='/tutorialform' component={TutorialForm}/>
     </Switch>
 );
 

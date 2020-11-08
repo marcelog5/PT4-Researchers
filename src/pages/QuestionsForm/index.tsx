@@ -44,6 +44,8 @@ const QuestionsForm: React.FC = () => {
   const [questionsShow, setQuestionsShow] = useState<number>(5);
   const [show, setShow] = useState(false);
 
+  console.log(location.state.pass);
+
   function handleSelectedAnswer(id: number, optionNumber: number) {
     let selected = [];
 
