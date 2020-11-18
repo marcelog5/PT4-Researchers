@@ -199,7 +199,7 @@ const RespondentInformationForm: React.FC = () => {
 
             <ContainerButton>
               <Link to={`/homeform/${location.state.passLink}`}>
-                <ButtonDefault type="button">
+                <ButtonDefault>
                   Voltar
                 </ButtonDefault>
               </Link>

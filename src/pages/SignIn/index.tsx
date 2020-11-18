@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiLogIn } from 'react-icons/fi';
+import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 
 // import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
+import Input from '../../components/input';
 
 import { Background, Container, Content } from './styles';
 
@@ -19,9 +20,9 @@ const SignIn: React.FC = () => {
             <form>
               <h1>Faça seu Login</h1>
 
-              <input placeholder="E-mail"/>
+              <Input name="email" icon={FiMail} placeholder="E-mail"/>
 
-              <input type="password" placeholder="Senha"/>
+              <Input name="password" icon={FiLock} type="password" placeholder="Senha"/>
 
               <ButtonDefault type="submit">
                 Entrar

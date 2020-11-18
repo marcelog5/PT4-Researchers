@@ -180,20 +180,20 @@ const QuestionsForm: React.FC = () => {
           <section>
             <ContainerButton display={5 === questionsShow ? 'flex' : 'none'}>
               <Link to={`/homeform/${location.state.passLink}`}>
-                <ButtonDefault type="button">
+                <ButtonDefault>
                   Voltar
                 </ButtonDefault>
               </Link>
             </ContainerButton>
 
             <ContainerButton display={5 + 1 < questionsShow ? 'flex' : 'none'}>
-                <ButtonDefault type="button" onClick={handleBackButton}>
+                <ButtonDefault onClick={handleBackButton}>
                   Voltar
                 </ButtonDefault>
             </ContainerButton>
 
             <ContainerButton display={numberQuestions - 1 < questionsShow ? 'none' : 'flex'}>
-                <ButtonDefault type="button" onClick={handleContinueButton}>
+                <ButtonDefault onClick={handleContinueButton}>
                   Continuar
                 </ButtonDefault>
             </ContainerButton>
@@ -207,7 +207,7 @@ const QuestionsForm: React.FC = () => {
                   passLink: location.state.passLink,
                 }
               }}>
-                <ButtonDefault type="button">
+                <ButtonDefault>
                   Continuar
                 </ButtonDefault>
               </Link>

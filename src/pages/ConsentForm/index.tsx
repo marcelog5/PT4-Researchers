@@ -73,7 +73,7 @@ const ConsentForm: React.FC = () => {
 
           <ContainerButton>
             <Link to={`/homeform/${location.state.passLink}`}>
-              <ButtonDefault type="button">
+              <ButtonDefault>
                 Cancelar
               </ButtonDefault>
             </Link>
@@ -85,7 +85,7 @@ const ConsentForm: React.FC = () => {
                 passLink: location.state.passLink,
               }
             }}>
-              <ButtonDefault type="button">
+              <ButtonDefault>
                 Aceito
               </ButtonDefault>
             </Link>

@@ -34,7 +34,9 @@ const HomeForm: React.FC = () => {
                 passLink: location.pathname.substring(10)
               }
             }}>
-            <ButtonDefault type="button">Comece aqui!</ButtonDefault>
+            <ButtonDefault>
+              Comece aqui!
+            </ButtonDefault>
           </Link>
         </Container>
       </Background>

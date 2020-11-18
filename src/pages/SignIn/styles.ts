@@ -50,14 +50,6 @@ export const Content = styled.div`
       margin-bottom: 24px;
     }
 
-    input {
-      border-radius: 10px;
-      border: 2px solid #ccc;
-      padding: 12px;
-      width: 100%;
-      margin: 10px 0;
-    }
-
     button {
       margin: 10px 0;
       height: 38px;

@@ -65,7 +65,7 @@ const TutorialForm: React.FC = () => {
           </div>
           <ContainerButton>
             <Link to={`/homeform/${location.state.passLink}`}>
-              <ButtonDefault type="button">
+              <ButtonDefault>
                 Voltar
               </ButtonDefault>
             </Link>
@@ -77,7 +77,7 @@ const TutorialForm: React.FC = () => {
                 passLink: location.state.passLink,
               }
             }}>
-              <ButtonDefault type="button">
+              <ButtonDefault>
                 Continuar
               </ButtonDefault>
             </Link>
