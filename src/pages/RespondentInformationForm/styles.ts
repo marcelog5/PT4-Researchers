@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import BackgroundImg from '../../assets/BackgroundBase.jpg';
 
+interface ContainerProps {
+  display:string
+}
+
 export const Background = styled.div`
   background-image: url(${BackgroundImg});
   background-repeat: no-repeat;
@@ -12,7 +16,7 @@ export const Background = styled.div`
   position: relative;
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -48,6 +52,12 @@ export const Container = styled.div`
     margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 16px;
+  }
+
+  div#texto div{
+    background-color: #E8F8F8;
+    border: 1px solid #ccc;
+    display: ${(props) => props.display};
   }
 
   select {

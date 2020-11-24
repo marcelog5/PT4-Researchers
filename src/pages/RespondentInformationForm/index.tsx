@@ -1,6 +1,7 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
+import { Form } from '@unform/web';
 
 import api from '../../services/api';
 import axios from 'axios';
@@ -9,6 +10,7 @@ import { Background, Container, ContainerButton } from './styles';
 
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
+import Input from '../../components/input';
 
 interface IBGECityResponse {
   nome: string;
@@ -45,6 +47,10 @@ interface QuestionsAnswer {
   passLink: string;
 }
 
+interface SubmitData {
+  Estado: string;
+}
+
 const RespondentInformationForm: React.FC = () => {
   const today = new Date();
   const location = useLocation<QuestionsAnswer>();
@@ -63,7 +69,7 @@ const RespondentInformationForm: React.FC = () => {
     axios.get<IBGECityResponse[]>("https://servicodados.ibge.gov.br/api/v1/localidades/estados").then(response => {
         const cityNames = response.data.map(city => city.nome);
 
-        setCities(cityNames);
+        setCities(cityNames.sort());
     });
   }, []);
 
@@ -91,13 +97,11 @@ const RespondentInformationForm: React.FC = () => {
     setSelectedAge(age.toString());
   }
 
-  async function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-
+  async function handleSubmit(data: SubmitData) {
     const gender = selectedGender
     const schooling = selectedSchooling;
     const age = selectedAge;
-    const state = selectedCity;
+    var state = selectedCity;
     const questionsAnswer = location.state.passAnswer;
     const form_id = location.state.passForm.id;
 
@@ -106,7 +110,16 @@ const RespondentInformationForm: React.FC = () => {
       return;
     }
 
-    const data = {
+    if (state === '1') {
+      if (data.Estado !== null && data.Estado !== "") {
+        state = data.Estado;
+      } else {
+        setShow(true);
+        return;
+      }
+    }
+
+    const dataSubmit = {
       gender,
       schooling,
       age,
@@ -115,7 +128,7 @@ const RespondentInformationForm: React.FC = () => {
       form_id
     };
 
-    await api.post('respondents', data)
+    await api.post('respondents', dataSubmit)
         .then((response) => {
             history.push({
               pathname: '/finishform',
@@ -149,20 +162,20 @@ const RespondentInformationForm: React.FC = () => {
       {/* <UpBar/> */}
 
       <Background>
-        <Container>
+        <Container display={'1' === selectedCity ? 'flex' : 'none'}>
           <AlertQuestion/>
 
           <h1>Fale sobre você</h1>
 
-          <form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <label>Data de nascimento</label>
-             <input
-              type="date"
-              onChange={handleSelectAge}
-              value={selectedAge.toString()}
-              max={`${today.getFullYear() - 1}-01-01`}
-              min="1900-06-01"
-             />
+            <input
+            type="date"
+            onChange={handleSelectAge}
+            value={selectedAge.toString()}
+            max={`${today.getFullYear() - 1}-01-01`}
+            min="1900-06-01"
+            />
 
             <label>Sexo</label>
             <select name="gender" id="gender" value={selectedGender} onChange={handleSelectGender}>
@@ -195,7 +208,12 @@ const RespondentInformationForm: React.FC = () => {
                 {cities.map(city => (
                     <option key={city} value={city}>{city}</option>
                 ))}
+              <option value="1">Outros</option>
             </select>
+
+            <div id="texto">
+              <Input type="text" name="Estado" placeholder="Digite onde você reside"/>
+            </div>
 
             <ContainerButton>
               <Link to={`/homeform/${location.state.passLink}`}>
@@ -208,7 +226,7 @@ const RespondentInformationForm: React.FC = () => {
                 Enviar
               </ButtonDefault>
             </ContainerButton>
-          </form>
+          </Form>
         </Container>
       </Background>
 
