@@ -40,8 +40,19 @@ export const Container = styled.div`
     line-height: 60px;
     background-color: #E8F8F8;
     font-weight: bold;
-    margin: 30px;
     text-align: center;
+  }
+
+  .labels div{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-left: 16%;
+  }
+
+  .labels div p{
+    height: 30px;
+    margin: 10px 0 0 20px;
   }
 
   .labels {

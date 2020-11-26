@@ -45,17 +45,42 @@ const TutorialForm: React.FC = () => {
       <Background>
         <Container>
           <div className="infor">
-            <p>O formulário a seguir é composto de questões dispostas em uma faixa de 1 a 5</p>
+            <p>
+            Nas páginas seguintes, serão apresentadas {location.state.pass.inventory.numberOfQuestions} afirmações que
+            tratam de características pessoais. Leia cada uma com atenção e, utilizando a escala de resposta abaixo, indique o
+            quanto concorda ou discorda com o fato de cada característica descrevê-lo.
+            </p>
 
             <div className="labels">
-              <label>1</label>
-              <span>...</span>
-              <label>5</label>
+              <div>
+                <label>1</label>
+                <p>Para discordo totalmente</p>
+              </div>
+
+              <div>
+                <label>2</label>
+                <p>Para Discordo em parte</p>
+              </div>
+
+              <div>
+                <label>3</label>
+                <p>Para Nem concordo nem discordo</p>
+              </div>
+
+              <div>
+                <label>4</label>
+                <p>Para Concordo em parte</p>
+              </div>
+
+              <div>
+                <label>5</label>
+                <p>Para Concordo totalmente</p>
+              </div>
             </div>
 
             <p>
-              Marque 1 se você discorda com o item proposto e marque 5 se
-              você concorda com o item proposto.
+              cada itém do questionário representa a sua visão de você mesmo, logo cada questão deve
+              ser interpretado como: <b>Eu me vejo como alguém que...</b>
             </p>
 
             <p>

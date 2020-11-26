@@ -194,12 +194,9 @@ const RespondentInformationForm: React.FC = () => {
               <option value="Médio - Completo">Médio - Completo</option>
               <option value="Superior - Incompleto">Superior - Incompleto</option>
               <option value="Superior - Completo">Superior - Completo</option>
-              <option value="Pós-graduação (Lato senso) - Incompleto">Pós-graduação (Lato senso) - Incompleto</option>
-              <option value="Pós-graduação (Lato senso) - Completo">Pós-graduação (Lato senso) - Completo</option>
-              <option value="Pós-graduação (Stricto sensu, nível mestrado) - Incompleto">Pós-graduação (Stricto sensu, nível mestrado) - Incompleto</option>
-              <option value="Pós-graduação (Stricto sensu, nível mestrado) - Completo">Pós-graduação (Stricto sensu, nível mestrado) - Completo</option>
-              <option value="Pós-graduação (Stricto sensu, nível doutor) - Incompleto">Pós-graduação (Stricto sensu, nível doutor) - Incompleto</option>
-              <option value="Pós-graduação (Stricto sensu, nível doutor) - Completo">Pós-graduação (Stricto sensu, nível doutor) - Completo</option>
+              <option value="Pós-graduação (Lato senso)">Pós-graduação (Lato senso)</option>
+              <option value="Pós-graduação (Stricto sensu, nível mestrado)">Pós-graduação (Stricto sensu, nível mestrado)</option>
+              <option value="Pós-graduação (Stricto sensu, nível doutor)">Pós-graduação (Stricto sensu, nível doutor)</option>
             </select>
 
             <label>Estado</label>

@@ -118,10 +118,6 @@ const QuestionsForm: React.FC = () => {
                     <p>{questions.question}</p>
 
                     <div className="radio-group">
-                      <span>
-                        Discordo
-                      </span>
-
                       <input type="radio" id="option-one" name={`selector${questions.id}`} />
                       <label
                         htmlFor="option-one"
@@ -166,10 +162,6 @@ const QuestionsForm: React.FC = () => {
                       >
                         5
                       </label>
-
-                      <span>
-                        Concordo
-                      </span>
                     </div>
                   </li>
                 );
