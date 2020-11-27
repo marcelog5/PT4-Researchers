@@ -9,10 +9,12 @@ import RedirectPage from '../pages/RedirectPage';
 import FinishFormPage from '../pages/FinishFormPage';
 import TutorialForm from '../pages/TutorialForm';
 import SignIn from '../pages/SignIn';
+import SignUp from '../pages/SignUp';
 
 const Routes: React.FC = () => (
     <Switch>
         <Route path='/' component={SignIn} exact/>
+        <Route path='/signup' component={SignUp}/>
         <Route path='/homeform/:id' component={HomeForm}/>
         <Route path='/consentform' component={ConsentForm}/>
         <Route path='/questionsform' component={QuestionsForm}/>
