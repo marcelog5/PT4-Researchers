@@ -8,20 +8,20 @@ export const Background = styled.div`
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: 100vh;
-  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
   width: 500px;
   background-color: rgba(235, 235, 235, 0.8);
-  position: absolute;
-  top: 47%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border-radius: 50px;
+  margin: 30px 0;
 `
 
 export const ResearchLink = styled.div`
@@ -46,5 +46,5 @@ export const ContainerButton = styled.div`
   display: flex;
   display: 1;
   justify-content: space-between;
-  margin: 20px 2% 40px 2%;;
+  margin: 10px 2% 40px 2%;
 `;
