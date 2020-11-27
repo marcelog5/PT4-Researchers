@@ -84,6 +84,20 @@ export const Container = styled.div`
   .selected {
     background-color: #77BABA;
   }
+
+  @media screen and (max-width: 600px)
+  {
+    .radio-group{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .radio-group label {
+      margin: 10px 0;
+    }
+  }
 `;
 
 export const ContainerButton = styled.div<ContainerProps>`

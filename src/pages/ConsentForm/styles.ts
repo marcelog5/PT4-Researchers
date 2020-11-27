@@ -18,10 +18,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 500px;
+  max-width: 600px;
+  width: 100%;
   background-color: rgba(235, 235, 235, 0.8);
   border-radius: 50px;
-  margin: 30px 0;
+  margin: 30px 2%;
 `
 
 export const ResearchLink = styled.div`
@@ -46,5 +47,6 @@ export const ContainerButton = styled.div`
   display: flex;
   display: 1;
   justify-content: space-between;
+  padding: 0 30px;
   margin: 10px 2% 40px 2%;
 `;
