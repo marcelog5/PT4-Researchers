@@ -68,6 +68,11 @@ export const Container = styled.div`
     margin: 40px 2% 80px 2%;
   }
 
+  .TutorialInfor {
+    margin-top: 30px;
+    font-size: 20px;
+  }
+
   .progress {
     margin-top: 30px;
     width: 50%;

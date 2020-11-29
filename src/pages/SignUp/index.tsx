@@ -1,7 +1,11 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowLeft, FiMail, FiLock, FiUser, FiCalendar, FiBookOpen } from 'react-icons/fi';
 import { Form } from '@unform/web';
+import { FormHandles } from '@unform/core'
+import * as Yup from 'yup';
+
+import getValidationErrors from '../../utils/getValidationErrors';
 
 import axios from 'axios';
 
@@ -18,6 +22,8 @@ interface IBGECityResponse {
 
 
 const SignUp: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
+
   const [cities, setCities] = useState<string[]>([]);
 
   const [selectedCity, setSelectedCity] = useState('0');
@@ -36,9 +42,26 @@ const SignUp: React.FC = () => {
     setSelectedCity(city);
   }
 
-  function handleSubmit(data: object): void {
-    console.log(data);
-  }
+  const handleSubmit = useCallback(async (data: object) => {
+    try {
+      formRef.current?.setErrors({});
+
+      const schema = Yup.object().shape({
+        name: Yup.string().required('Nome Obrigatório'),
+        email: Yup.string().required('E-mail obrigatório').email('Digite um e-mail válido'),
+        password: Yup.string().min(6,'No mínimo 6 dígitos'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+    } catch (err) {
+      const errors = getValidationErrors(err);
+
+      formRef.current?.setErrors(errors);
+    }
+  }, []);
 
   return (
     <>
@@ -47,7 +70,7 @@ const SignUp: React.FC = () => {
           <Content display={'1' === selectedCity ? 'flex' : 'none'}>
             <span></span>
 
-            <Form onSubmit={handleSubmit}>
+            <Form ref={formRef} onSubmit={handleSubmit}>
               <h1>Faça seu Cadastro</h1>
 
               <Input name="name" icon={FiUser} placeholder="Nome"/>

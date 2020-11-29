@@ -43,6 +43,7 @@ const QuestionsForm: React.FC = () => {
 
   const [selectedQuestions, setSelectedQuestions] = useState<number[]>([]);
   const [questionsShow, setQuestionsShow] = useState<number>(5);
+  const [auxQuestionsShow, setAuxQuestionsShow] = useState<number>(5);
   const [show, setShow] = useState(false);
 
   function handleSelectedAnswer(id: number, optionNumber: number) {
@@ -74,7 +75,7 @@ const QuestionsForm: React.FC = () => {
       behavior: 'smooth'
     });
 
-    setQuestionsShow(questionShow + 5);
+    setQuestionsShow(questionShow + auxQuestionsShow);
   }
 
   function AlertQuestion() {
@@ -97,7 +98,7 @@ const QuestionsForm: React.FC = () => {
 
     questionShow = questionsShow;
 
-    setQuestionsShow(questionShow - 5);
+    setQuestionsShow(questionShow - auxQuestionsShow);
   }
 
   return (
@@ -106,13 +107,18 @@ const QuestionsForm: React.FC = () => {
 
       <Background>
         <Container>
-        <ProgressBar now={selectedQuestions.length * 100 / numberQuestions} label={`${selectedQuestions.length * 100 / numberQuestions}%`}/>
-
+        <ProgressBar
+          now={selectedQuestions.length * 100 / numberQuestions}
+          label={`${selectedQuestions.length * 100 / numberQuestions}%`}
+        />
         <AlertQuestion />
 
           <form>
             <ul>
-              {questions.slice(questionsShow - 5,questionsShow).map(questions => {
+              <p className="TutorialInfor">
+                Para cada item leia: <b>Eu me vejo como alguém que...</b>
+              </p>
+              {questions.slice(questionsShow - auxQuestionsShow,questionsShow).map(questions => {
                 return (
                   <li key={questions.id}>
                     <p>{questions.question}</p>
@@ -170,7 +176,7 @@ const QuestionsForm: React.FC = () => {
           </form>
 
           <section>
-            <ContainerButton display={5 === questionsShow ? 'flex' : 'none'}>
+            <ContainerButton display={auxQuestionsShow === questionsShow ? 'flex' : 'none'}>
               <Link to={`/homeform/${location.state.passLink}`}>
                 <ButtonDefault>
                   Voltar
@@ -178,7 +184,7 @@ const QuestionsForm: React.FC = () => {
               </Link>
             </ContainerButton>
 
-            <ContainerButton display={5 + 1 < questionsShow ? 'flex' : 'none'}>
+            <ContainerButton display={auxQuestionsShow + 1 < questionsShow ? 'flex' : 'none'}>
                 <ButtonDefault onClick={handleBackButton}>
                   Voltar
                 </ButtonDefault>
