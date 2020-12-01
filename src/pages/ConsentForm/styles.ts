@@ -23,13 +23,31 @@ export const Container = styled.div`
   background-color: rgba(235, 235, 235, 0.8);
   border-radius: 50px;
   margin: 30px 2%;
+
+  @media screen and (max-width: 1000px)
+  {
+    max-width: 500px;
+
+    p {
+      font-size: 14px;
+    }
+
+    h5 {
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 640px)
+  {
+    max-width: 400px;
+  }
 `
 
 export const ResearchLink = styled.div`
   margin: 40px 2% 20px 2%;
   text-align: center;
 
-  p {
+  h5 {
     font-weight: 700;
   }
 `;
@@ -38,8 +56,9 @@ export const ResearchTerm = styled.div`
   margin: 40px 2% 20px 2%;
   text-align: center;
 
-  p:first-of-type {
+  h5:first-of-type {
     font-weight: 700;
+    margin-bottom: 16px;
   }
 `;
 
@@ -49,4 +68,11 @@ export const ContainerButton = styled.div`
   justify-content: space-between;
   padding: 0 30px;
   margin: 10px 2% 40px 2%;
+
+  @media screen and (max-width: 640px)
+  {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
 `;

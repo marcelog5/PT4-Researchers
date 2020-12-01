@@ -79,11 +79,6 @@ const TutorialForm: React.FC = () => {
             </div>
 
             <p>
-              cada itém do questionário representa a sua visão de você mesmo, logo cada questão deve
-              ser interpretado como: <b>Eu me vejo como alguém que...</b>
-            </p>
-
-            <p>
               É obrigatório responder a todos os itens, caso não responda, você será empedido de continuar
               o questionário.
             </p>

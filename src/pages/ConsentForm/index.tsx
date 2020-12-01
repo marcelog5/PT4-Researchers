@@ -62,12 +62,12 @@ const ConsentForm: React.FC = () => {
       <Background>
         <Container>
           <ResearchLink>
-            <p>Link para o Termo de consentimento do pesquisador</p>
+            <h5>Link para o Termo de consentimento do pesquisador</h5>
             <a href={forms?.link} target="_blanck">{forms?.link}</a>
           </ResearchLink>
 
           <ResearchTerm>
-            <p>Termo de consentimento do pesquisador</p>
+            <h5>Termo de consentimento do pesquisador</h5>
             <p>{forms?.term}</p>
           </ResearchTerm>
 

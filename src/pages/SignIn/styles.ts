@@ -21,8 +21,22 @@ export const Container = styled.div`
   height: 100%;
   width: 500px;
   background-color: rgba(235, 235, 235, 0.8);
-  margin: 30px 0;
+  margin: 30px 2%;
   border-radius: 50px;
+
+  @media screen and (max-width: 1000px)
+  {
+    max-width: 500px;
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 640px)
+  {
+    max-width: 400px;
+  }
 `;
 
 export const Content = styled.div`
@@ -68,5 +82,17 @@ export const Content = styled.div`
 
   a:hover {
     color: ${shade(0.2, '#FFBFB9')}
+  }
+
+  @media screen and (max-width: 640px)
+  {
+    button {
+      margin: 10px 0;
+      height: 38px;
+      width: 100%;
+      max-width: 200px;
+      line-height: 38px;
+      border-radius: 20px;
+    }
   }
 `;

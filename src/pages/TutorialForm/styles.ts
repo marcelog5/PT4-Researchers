@@ -65,6 +65,35 @@ export const Container = styled.div`
     font-size: 60px;
     font-style: bold;
   }
+
+  @media screen and (max-width: 1000px)
+  {
+    max-width: 500px;
+
+    p {
+      font-size: 14px;
+    }
+
+    h5 {
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (max-width: 640px)
+  {
+    max-width: 400px;
+
+    .labels div{
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0 0 0;
+    }
+
+    .labels div p{
+      margin: 10px 0 0 0;
+    }
+  }
 `
 
 export const ContainerButton = styled.div`
@@ -73,4 +102,11 @@ export const ContainerButton = styled.div`
   justify-content: space-between;
   padding: 0 30px;
   margin: 10px 2% 40px 2%;
+
+  @media screen and (max-width: 640px)
+  {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
 `;

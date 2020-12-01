@@ -12,8 +12,10 @@ export const Background = styled.div`
   background-position: center;
   background-size: cover;
   width: 100%;
-  height: 100vh;
-  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Container = styled.div<ContainerProps>`
@@ -77,4 +79,11 @@ export const ContainerButton = styled.div`
   display: 1;
   justify-content: space-between;
   margin: 60px auto;
+
+  @media screen and (max-width: 640px)
+  {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
 `;

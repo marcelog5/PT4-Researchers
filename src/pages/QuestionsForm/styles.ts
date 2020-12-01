@@ -12,7 +12,8 @@ export const Background = styled.div`
   background-position: center;
   background-size: cover;
   width: 100%;
-  position: relative;
+  min-height: 100vh;
+  display: flex;
 `;
 
 export const Container = styled.div`
@@ -102,10 +103,31 @@ export const Container = styled.div`
     .radio-group label {
       margin: 10px 0;
     }
+
+    section {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .TutorialInfor {
+      max-width: 400px;
+      margin: 30px 2% 0 2%;
+    }
+
+    .progress {
+      width: 80%;
+    }
   }
 `;
 
 export const ContainerButton = styled.div<ContainerProps>`
   display: ${(props) => props.display};
   padding: 0 60px;
+
+  @media screen and (max-width: 600px)
+  {
+    margin-top: 16px;
+  }
 `;

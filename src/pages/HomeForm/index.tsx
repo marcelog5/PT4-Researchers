@@ -16,28 +16,30 @@ const HomeForm: React.FC = () => {
 
       <Background>
         <Container>
-          <h1>Teste do Big 5</h1>
+          <div className="InforContainer">
+            <h1>Teste do Big 5</h1>
 
-          <p>
-            Esse é um método que tenta descrever a sua personalidade em 5 principais traços a partir
-            de diversas questões que serão apresentadas a você.
-          </p>
+            <p>
+              Esse é um método que tenta descrever a sua personalidade em 5 principais traços a partir
+              de diversas questões que serão apresentadas a você.
+            </p>
 
-          <p>
-            Sua contribuição para esse teste influenciará nos estudos de diversos pesquisadores, por isso,
-            responda da maneira que mais se assemelha a você.
-          </p>
+            <p>
+              Sua contribuição para esse teste influenciará nos estudos de diversos pesquisadores, por isso,
+              responda da maneira que mais se assemelha a você.
+            </p>
 
-          <Link to={{
+            <Link to={{
               pathname: "/consentform",
               state: {
                 passLink: location.pathname.substring(10)
               }
             }}>
-            <ButtonDefault>
-              Comece aqui!
-            </ButtonDefault>
-          </Link>
+              <ButtonDefault>
+                Comece aqui!
+              </ButtonDefault>
+            </Link>
+          </div>
         </Container>
       </Background>
 
