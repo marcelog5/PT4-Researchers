@@ -88,17 +88,6 @@ export const Content = styled.div<ContentProps>`
       background-color: transparent;
     }
 
-    select {
-      border-radius: 10px;
-      border: 2px solid #ccc;
-      padding: 12px;
-      width: 100%;
-      margin: 10px 0;
-      display: flex;
-      align-items: center;
-      background-color: transparent;
-    }
-
     div#texto div{
       display: ${(props) => props.display};
     }

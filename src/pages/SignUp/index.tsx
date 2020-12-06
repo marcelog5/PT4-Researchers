@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FiArrowLeft, FiMail, FiLock, FiUser, FiCalendar, FiBookOpen } from 'react-icons/fi';
+import { FiArrowLeft, FiMail, FiLock, FiUser, FiCalendar, FiBookOpen, FiMapPin } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core'
 import * as Yup from 'yup';
@@ -13,6 +13,7 @@ import axios from 'axios';
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
 import Input from '../../components/input';
+import Select from '../../components/select';
 
 import { Background, Container, Content } from './styles';
 
@@ -85,39 +86,34 @@ const SignUp: React.FC = () => {
 
               <Input name="instituicao" icon={FiBookOpen} placeholder="Instituição"/>
 
-              <select name="gender" id="gender">
+              <Select name="gender" icon={FiUser} id="gender">
                 <option value="0">Selecione o seu sexo</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Feminino">Feminino</option>
                 <option value="Prefiro não declarar">Prefiro não declarar</option>
-              </select>
+              </Select>
 
-              <select name="schooling" id="schooling">
+              <Select icon={FiBookOpen} name="schooling" id="schooling">
                 <option value="0">Selecione uma escolaridade</option>
-                <option value="Fundamental - Incompleto">Fundamental - Incompleto</option>
-                <option value="Fundamental - Completo">Fundamental - Completo</option>
                 <option value="Médio - Incompleto">Médio - Incompleto</option>
                 <option value="Médio - Completo">Médio - Completo</option>
                 <option value="Superior - Incompleto">Superior - Incompleto</option>
                 <option value="Superior - Completo">Superior - Completo</option>
-                <option value="Pós-graduação (Lato senso) - Incompleto">Pós-graduação (Lato senso) - Incompleto</option>
-                <option value="Pós-graduação (Lato senso) - Completo">Pós-graduação (Lato senso) - Completo</option>
-                <option value="Pós-graduação (Stricto sensu, nível mestrado) - Incompleto">Pós-graduação (Stricto sensu, nível mestrado) - Incompleto</option>
-                <option value="Pós-graduação (Stricto sensu, nível mestrado) - Completo">Pós-graduação (Stricto sensu, nível mestrado) - Completo</option>
-                <option value="Pós-graduação (Stricto sensu, nível doutor) - Incompleto">Pós-graduação (Stricto sensu, nível doutor) - Incompleto</option>
-                <option value="Pós-graduação (Stricto sensu, nível doutor) - Completo">Pós-graduação (Stricto sensu, nível doutor) - Completo</option>
-              </select>
+                <option value="Pós-graduação (Lato senso) - Completo">Pós-graduação (Lato senso)</option>
+                <option value="Pós-graduação (Stricto sensu, nível mestrado) - Completo">Pós-graduação (Stricto sensu, nível mestrado)</option>
+                <option value="Pós-graduação (Stricto sensu, nível doutor) - Completo">Pós-graduação (Stricto sensu, nível doutor)</option>
+              </Select>
 
-              <select name="city" id="city" value={selectedCity} onChange={handleSelectCity}>
+              <Select name="city" icon={FiMapPin} id="city" value={selectedCity} onChange={handleSelectCity}>
                 <option value="0">Selecione o seu Estado</option>
                   {cities.map(city => (
                       <option key={city} value={city}>{city}</option>
                   ))}
                 <option value="1">Outros</option>
-              </select>
+              </Select>
 
               <div id="texto">
-                <Input type="text" name="Estado" placeholder="Digite onde você reside"/>
+                <Input icon={FiMapPin} type="text" name="Estado" placeholder="Digite onde você reside"/>
               </div>
 
               <Input name="password" icon={FiLock} type="password" placeholder="Senha"/>
