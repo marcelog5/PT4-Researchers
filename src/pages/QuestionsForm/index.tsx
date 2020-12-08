@@ -116,7 +116,7 @@ const QuestionsForm: React.FC = () => {
           <form>
             <ul>
               <p className="TutorialInfor">
-                Para cada item leia: <b>Eu me vejo como alguém que...</b>
+                <b>Eu me vejo como alguém que:</b>
               </p>
               {questions.slice(questionsShow - auxQuestionsShow,questionsShow).map(questions => {
                 return (

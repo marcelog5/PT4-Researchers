@@ -71,7 +71,7 @@ export const ContainerButton = styled.div`
 
   @media screen and (max-width: 640px)
   {
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

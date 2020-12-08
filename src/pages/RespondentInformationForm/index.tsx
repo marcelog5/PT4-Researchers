@@ -205,7 +205,7 @@ const RespondentInformationForm: React.FC = () => {
                 {cities.map(city => (
                     <option key={city} value={city}>{city}</option>
                 ))}
-              <option value="1">Outros</option>
+              <option value="1">Outro país</option>
             </select>
 
             <div id="texto">
