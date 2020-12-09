@@ -69,7 +69,7 @@ const SignUp: React.FC = () => {
       <Background>
         <Container>
           <Content display={'1' === selectedCity ? 'flex' : 'none'}>
-            <span></span>
+            <span className="logo"></span>
 
             <Form ref={formRef} onSubmit={handleSubmit}>
               <h1>Faça seu Cadastro</h1>
