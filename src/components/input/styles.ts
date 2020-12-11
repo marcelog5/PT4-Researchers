@@ -43,6 +43,17 @@ export const Container = styled.div<ContainerProps>`
     border: 0;
   }
 
+  input[type="date"]::before{
+   content: attr(placeholder) ": ";
+  }
+  input[type="date"]:focus::before {
+    content: "" !important;
+  }
+
+  input::-webkit-calendar-picker-indicator{
+    display: none;
+  }
+
   svg {
     margin-right: 16px;
   }

@@ -21,6 +21,19 @@ interface IBGECityResponse {
   nome: string;
 }
 
+interface DataValidation {
+  city: string;
+  country: string;
+  date: string;
+  email: string;
+  gender: string;
+  institution: string;
+  lattes: string;
+  name: string;
+  orcid: string;
+  password: string;
+  repassword: string;
+}
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -43,15 +56,38 @@ const SignUp: React.FC = () => {
     setSelectedCity(city);
   }
 
-  const handleSubmit = useCallback(async (data: object) => {
+  const handleSubmit = useCallback(async (data: DataValidation) => {
     try {
       formRef.current?.setErrors({});
 
       const schema = Yup.object().shape({
         name: Yup.string().required('Nome Obrigatório'),
         email: Yup.string().required('E-mail obrigatório').email('Digite um e-mail válido'),
+        date: Yup.date().required().typeError("Data de nascimento obrigatória"),
+        gender: Yup.string().required("Campo obrigatório"),
+        schooling: Yup.string().required("Escolaridade obrigatória"),
+        city: Yup.string().required("Cidade obrigatória"),
         password: Yup.string().min(6,'No mínimo 6 dígitos'),
+        repassword: Yup.string().oneOf([Yup.ref('password')], "Senha não confere").required("Repetir senha obrigatório"),
       });
+
+      if(data.city === '1'){
+
+        const minischema = Yup.object().shape({
+          name: Yup.string().required('Nome Obrigatório'),
+          email: Yup.string().required('E-mail obrigatório').email('Digite um e-mail válido'),
+          date: Yup.date().required().typeError("Data de nascimento obrigatória"),
+          gender: Yup.string().required("Campo obrigatório"),
+          schooling: Yup.string().required("Escolaridade obrigatória"),
+          password: Yup.string().min(6,'No mínimo 6 dígitos'),
+          repassword: Yup.string().oneOf([Yup.ref('password')], "Senha não confere").required("Repetir senha obrigatório"),
+          country: Yup.string().required("País obrigatório"),
+        });
+
+        await minischema.validate(data, {
+          abortEarly: false,
+        });
+      }
 
       await schema.validate(data, {
         abortEarly: false,
@@ -78,23 +114,28 @@ const SignUp: React.FC = () => {
 
               <Input name="email" icon={FiMail} placeholder="E-mail"/>
 
-              <Input name="date" icon={FiCalendar} placeholder="Data de nascimento"/>
+              <Input
+                name="date"
+                icon={FiCalendar}
+                type="date"
+                placeholder="Data de nascimento"
+              />
 
               <Input name="lattes" icon={FiBookOpen} placeholder="Lattes"/>
 
               <Input name="orcid" icon={FiBookOpen} placeholder="ORCID"/>
 
-              <Input name="instituicao" icon={FiBookOpen} placeholder="Instituição"/>
+              <Input name="institution" icon={FiBookOpen} placeholder="Instituição"/>
 
               <Select name="gender" icon={FiUser} id="gender">
-                <option value="0">Selecione o seu sexo</option>
+                <option value="">Selecione o seu sexo</option>
                 <option value="Masculino">Masculino</option>
                 <option value="Feminino">Feminino</option>
                 <option value="Prefiro não declarar">Prefiro não declarar</option>
               </Select>
 
-              <Select icon={FiBookOpen} name="schooling" id="schooling">
-                <option value="0">Selecione uma escolaridade</option>
+              <Select name="schooling" icon={FiBookOpen} id="schooling">
+                <option value="">Selecione uma escolaridade</option>
                 <option value="Médio - Incompleto">Médio - Incompleto</option>
                 <option value="Médio - Completo">Médio - Completo</option>
                 <option value="Superior - Incompleto">Superior - Incompleto</option>
@@ -105,7 +146,7 @@ const SignUp: React.FC = () => {
               </Select>
 
               <Select name="city" icon={FiMapPin} id="city" value={selectedCity} onChange={handleSelectCity}>
-                <option value="0">Selecione o seu Estado</option>
+                <option value="">Selecione o seu Estado</option>
                   {cities.map(city => (
                       <option key={city} value={city}>{city}</option>
                   ))}
@@ -113,7 +154,7 @@ const SignUp: React.FC = () => {
               </Select>
 
               <div id="texto">
-                <Input icon={FiMapPin} type="text" name="Estado" placeholder="Digite onde você reside"/>
+                <Input icon={FiMapPin} type="text" name="country" placeholder="Digite onde você reside"/>
               </div>
 
               <Input name="password" icon={FiLock} type="password" placeholder="Senha"/>

@@ -47,7 +47,7 @@ export const Content = styled.div`
   align-items: center;
   margin-bottom: 30px;
 
-  span {
+  .logo {
     margin-top: 32px;
     width: 72px;
     height: 72px;

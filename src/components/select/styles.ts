@@ -1,6 +1,14 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+import Tooltip from '../Tooltip';
+
+interface ContainerProps {
+  isFocused: boolean;
+  isFilled: boolean;
+  isErrored: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   border-radius: 10px;
   border: 2px solid #ccc;
   padding: 12px;
@@ -8,6 +16,25 @@ export const Container = styled.div`
   margin: 10px 0;
   display: flex;
   align-items: center;
+
+  ${(props) =>
+  props.isErrored &&
+  css`
+    border-color: #c53030;
+  `}
+
+  ${(props) =>
+  props.isFocused &&
+  css`
+    color: #FFBFB9;
+    border-color: #FFBFB9;
+  `}
+
+  ${(props) =>
+  props.isFilled &&
+  css`
+    color: #FFBFB9;
+  `}
 
   select {
     border: none;
@@ -19,5 +46,23 @@ export const Container = styled.div`
 
   svg {
     margin-right: 16px;
+  }
+`;
+
+export const Error = styled(Tooltip)`
+  height: 20px;
+  margin-left: 16px;
+
+  svg {
+    margin: 0;
+  }
+
+  span {
+    background: #c53030;
+    color: #fff;
+
+    &::before {
+      border-color: #c53030 transparent;
+    }
   }
 `;
