@@ -6,10 +6,13 @@ import Routes from './routes';
 
 import GlobalStyle from './styles/global';
 
+import { AuthProvider } from './context/AuthContext';
 
 const App: React.FC = () => (
   <Router>
-    <Routes />
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
 
     <GlobalStyle />
   </Router>

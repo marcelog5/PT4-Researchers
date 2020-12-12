@@ -1,23 +1,30 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import { AuthContext } from '../../context/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 
-// import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
 import Input from '../../components/input';
 
 import { Background, Container, Content } from './styles';
 
+interface SignInFormData {
+  email: string;
+  password: string;
+}
+
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: object) => {
+  const { signIn } = useContext(AuthContext);
+
+  const handleSubmit = useCallback(async (data: SignInFormData) => {
     try {
       formRef.current?.setErrors({});
 
@@ -30,12 +37,18 @@ const SignIn: React.FC = () => {
         abortEarly: false,
       });
 
+      signIn({
+        email: data.email,
+        password: data.password,
+      });
+
     } catch (err) {
+      console.log(err);
       const errors = getValidationErrors(err);
 
       formRef.current?.setErrors(errors);
     }
-  }, []);
+  }, [signIn]);
 
   return (
     <>
