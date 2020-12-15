@@ -1,13 +1,16 @@
 import React, { useState, useEffect, ChangeEvent, useCallback, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft, FiMail, FiLock, FiUser, FiCalendar, FiBookOpen, FiMapPin } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core'
 import * as Yup from 'yup';
 
+import axios from 'axios';
+import api from '../../services/api';
+
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import axios from 'axios';
+import { useToast } from '../../hooks/Toast';
 
 // import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
@@ -27,6 +30,7 @@ interface DataValidation {
   date: string;
   email: string;
   gender: string;
+  schooling: string;
   institution: string;
   lattes: string;
   name: string;
@@ -37,6 +41,8 @@ interface DataValidation {
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const { addToast } = useToast();
+  const history = useHistory();
 
   const [cities, setCities] = useState<string[]>([]);
 
@@ -71,6 +77,20 @@ const SignUp: React.FC = () => {
         repassword: Yup.string().oneOf([Yup.ref('password')], "Senha não confere").required("Repetir senha obrigatório"),
       });
 
+      let postData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        gender: data.gender,
+        age: data.date,
+        institution: data.institution,
+        schooling: data.schooling,
+        orcid: data.orcid,
+        lattes: data.lattes,
+        state: data.city,
+        isAdmin: false,
+      }
+
       if(data.city === '1'){
 
         const minischema = Yup.object().shape({
@@ -87,18 +107,42 @@ const SignUp: React.FC = () => {
         await minischema.validate(data, {
           abortEarly: false,
         });
+
+        postData.state = data.country;
       }
 
       await schema.validate(data, {
         abortEarly: false,
       });
 
-    } catch (err) {
-      const errors = getValidationErrors(err);
+      console.log(postData);
 
-      formRef.current?.setErrors(errors);
+      await api.post('/users', postData);
+
+      history.push('/');
+
+      addToast({
+        type: 'success',
+        title: 'Cadastro realizado!',
+        description: 'Agora você já pode realizar o seu login!'
+      });
+
+    } catch (err) {
+      if(err instanceof Yup.ValidationError){
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+
+        return;
+      }
+
+      addToast({
+        type: 'error',
+        title: 'Erro no cadastro',
+        description: 'Ocorreu um erro ao fazer cadastro, tente novamente!',
+      });
     }
-  }, []);
+  }, [addToast, history]);
 
   return (
     <>
