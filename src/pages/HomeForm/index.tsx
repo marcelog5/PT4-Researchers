@@ -1,5 +1,7 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+
+import { useForm } from '../../hooks/Form';
 
 import { Background, Container } from './styles';
 
@@ -9,6 +11,18 @@ import ButtonDefault from '../../components/ButtonDefault';
 
 const HomeForm: React.FC = () => {
   const location = useLocation();
+  const history = useHistory();
+  const { addForm } = useForm();
+
+  useEffect(() => {
+    async function AddForm() {
+      if (!(await addForm(location.pathname.substring(10))))
+        history.push('/formnotexist');
+    }
+
+    AddForm();
+
+  }, [location.pathname, history, addForm]);
 
   return (
     <>
@@ -29,12 +43,7 @@ const HomeForm: React.FC = () => {
               responda da maneira que mais se assemelha a você.
             </p>
 
-            <Link to={{
-              pathname: "/consentform",
-              state: {
-                passLink: location.pathname.substring(10)
-              }
-            }}>
+            <Link to={"/consentform"}>
               <ButtonDefault>
                 Comece aqui!
               </ButtonDefault>

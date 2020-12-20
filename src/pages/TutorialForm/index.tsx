@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { useForm } from '../../hooks/Form';
 
 // import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
@@ -7,36 +9,8 @@ import ButtonDefault from '../../components/ButtonDefault';
 
 import { Background, Container, ContainerButton } from './styles';
 
-interface Question {
-  id: string;
-  question: string;
-  inverted: boolean;
-  trait: string;
-  factor: string;
-  questionNumber: number;
-}
-
-interface Inventory {
-  id: string;
-  author: string;
-  numberOfQuestions: number;
-  inventoryName: string;
-  questions: Question[];
-}
-
-interface Form {
-  pass: {
-    id: string;
-    name: string;
-    term: string;
-    link: string;
-    inventory: Inventory;
-  },
-  passLink: string;
-}
-
 const TutorialForm: React.FC = () => {
-  const location = useLocation<Form>();
+  const { formData } = useForm();
 
   return (
     <>
@@ -52,7 +26,7 @@ const TutorialForm: React.FC = () => {
             </p> */}
 
             <p>
-            Nas páginas seguintes, serão apresentadas {location.state.pass.inventory.numberOfQuestions} afirmações que
+            Nas páginas seguintes, serão apresentadas {formData.inventory.numberOfQuestions} afirmações que
             tratam de características pessoais. Leia cada uma com atenção e, atribua um valor na escala de 1 a 5, sendo:
             </p>
 
@@ -93,19 +67,13 @@ const TutorialForm: React.FC = () => {
             </p>
           </div>
           <ContainerButton>
-            <Link to={`/homeform/${location.state.passLink}`}>
+            <Link to={"/consentform"}>
               <ButtonDefault>
                 Voltar
               </ButtonDefault>
             </Link>
 
-            <Link to={{
-              pathname: "/questionsform",
-              state: {
-                pass: location.state.pass,
-                passLink: location.state.passLink,
-              }
-            }}>
+            <Link to={"/questionsform"}>
               <ButtonDefault>
                 Continuar
               </ButtonDefault>

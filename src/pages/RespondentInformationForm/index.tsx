@@ -3,6 +3,8 @@ import { useLocation, useHistory, Link } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import { Form } from '@unform/web';
 
+import { useForm } from '../../hooks/Form';
+
 import api from '../../services/api';
 import axios from 'axios';
 
@@ -16,35 +18,10 @@ interface IBGECityResponse {
   nome: string;
 }
 
-interface Question {
-  id: string;
-  question: string;
-  inverted: boolean;
-  trait: string;
-  factor: string;
-  questionNumber: number;
-}
-
-interface Inventory {
-  id: string;
-  author: string;
-  numberOfQuestions: number;
-  inventoryName: string;
-  questions: Question[];
-}
-
 interface QuestionsAnswer {
   passAnswer: {
     selectedQuestions: number[];
-  },
-  passForm: {
-    id: string;
-    name: string;
-    term: string;
-    link: string;
-    inventory: Inventory;
-  },
-  passLink: string;
+  }
 }
 
 interface SubmitData {
@@ -55,6 +32,8 @@ const RespondentInformationForm: React.FC = () => {
   const today = new Date();
   const location = useLocation<QuestionsAnswer>();
   const history = useHistory();
+
+  const { formData, removeForm } = useForm();
 
   const [cities, setCities] = useState<string[]>([]);
 
@@ -103,7 +82,7 @@ const RespondentInformationForm: React.FC = () => {
     const age = selectedAge;
     var state = selectedCity;
     const questionsAnswer = location.state.passAnswer;
-    const form_id = location.state.passForm.id;
+    const form_id = formData.id;
 
     if(gender === "0" || schooling === "0" || state === "0"){
       setShow(true);
@@ -130,10 +109,12 @@ const RespondentInformationForm: React.FC = () => {
 
     await api.post('respondents', dataSubmit)
         .then((response) => {
+            removeForm();
+
             history.push({
-              pathname: '/finishform',
+              pathname: "/finishform",
               state: {
-                passForm: location.state.passForm,
+                passForm: formData,
               }
             });
         }, (error) => {
@@ -213,7 +194,7 @@ const RespondentInformationForm: React.FC = () => {
             </div>
 
             <ContainerButton>
-              <Link to={`/homeform/${location.state.passLink}`}>
+              <Link to={"/questionsform"}>
                 <ButtonDefault>
                   Voltar
                 </ButtonDefault>

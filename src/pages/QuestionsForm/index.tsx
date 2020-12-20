@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ProgressBar, Alert } from 'react-bootstrap';
+
+import { useForm } from '../../hooks/Form';
 
 // import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
@@ -8,42 +10,14 @@ import ButtonDefault from '../../components/ButtonDefault';
 
 import { Background, Container, ContainerButton} from './styles';
 
-interface Question {
-  id: string;
-  question: string;
-  inverted: boolean;
-  trait: string;
-  factor: string;
-  questionNumber: number;
-}
-
-interface Inventory {
-  id: string;
-  author: string;
-  numberOfQuestions: number;
-  inventoryName: string;
-  questions: Question[];
-}
-
-interface Form {
-  pass: {
-    id: string;
-    name: string;
-    term: string;
-    link: string;
-    inventory: Inventory;
-  },
-  passLink: string;
-}
-
 const QuestionsForm: React.FC = () => {
-  const location = useLocation<Form>();
-  const questions = location.state.pass.inventory.questions;
-  const numberQuestions = location.state.pass.inventory.numberOfQuestions;
+  const { formData } = useForm();
+
+  const questions = formData.inventory.questions;
+  const numberQuestions = formData.inventory.numberOfQuestions;
 
   const [selectedQuestions, setSelectedQuestions] = useState<number[]>([]);
   const [questionsShow, setQuestionsShow] = useState<number>(5);
-  const [auxQuestionsShow, setAuxQuestionsShow] = useState<number>(5);
   const [show, setShow] = useState(false);
 
   function handleSelectedAnswer(id: number, optionNumber: number) {
@@ -75,7 +49,7 @@ const QuestionsForm: React.FC = () => {
       behavior: 'smooth'
     });
 
-    setQuestionsShow(questionShow + auxQuestionsShow);
+    setQuestionsShow(questionShow + 5);
   }
 
   function AlertQuestion() {
@@ -98,7 +72,7 @@ const QuestionsForm: React.FC = () => {
 
     questionShow = questionsShow;
 
-    setQuestionsShow(questionShow - auxQuestionsShow);
+    setQuestionsShow(questionShow - 5);
   }
 
   return (
@@ -118,7 +92,7 @@ const QuestionsForm: React.FC = () => {
               <p className="TutorialInfor">
                 <b>Eu me vejo como alguém que:</b>
               </p>
-              {questions.slice(questionsShow - auxQuestionsShow,questionsShow).map(questions => {
+              {questions.slice(questionsShow - 5,questionsShow).map(questions => {
                 return (
                   <li key={questions.id}>
                     <p>{questions.question}</p>
@@ -176,15 +150,15 @@ const QuestionsForm: React.FC = () => {
           </form>
 
           <section>
-            <ContainerButton display={auxQuestionsShow === questionsShow ? 'flex' : 'none'}>
-              <Link to={`/homeform/${location.state.passLink}`}>
+            <ContainerButton display={5 === questionsShow ? 'flex' : 'none'}>
+              <Link to={"/tutorialform"}>
                 <ButtonDefault>
                   Voltar
                 </ButtonDefault>
               </Link>
             </ContainerButton>
 
-            <ContainerButton display={auxQuestionsShow + 1 < questionsShow ? 'flex' : 'none'}>
+            <ContainerButton display={5 + 1 < questionsShow ? 'flex' : 'none'}>
                 <ButtonDefault onClick={handleBackButton}>
                   Voltar
                 </ButtonDefault>
@@ -200,9 +174,7 @@ const QuestionsForm: React.FC = () => {
               <Link to={{
                 pathname: "/respondentinformationform",
                 state: {
-                  passForm: location.state.pass,
-                  passAnswer: selectedQuestions,
-                  passLink: location.state.passLink,
+                  passAnswer: selectedQuestions
                 }
               }}>
                 <ButtonDefault>
