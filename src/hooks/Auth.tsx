@@ -6,8 +6,25 @@ interface SignInCredentials {
   password: string;
 }
 
+interface User {
+  id: string;
+  isAdmin: string;
+  name: string;
+  email: string;
+  password: string;
+  gender: string;
+  age: Date;
+  institution: string;
+  orcid: string;
+  lattes: string;
+  state: string;
+  schooling: string;
+  updated_at: string;
+  created_at: string;
+}
+
 interface AuthContextData {
-  userData: object;
+  userData: User;
   userToken: string;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
@@ -15,7 +32,7 @@ interface AuthContextData {
 
 interface AuthState {
   token: string;
-  userData: object;
+  userData: User;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
