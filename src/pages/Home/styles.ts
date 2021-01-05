@@ -31,8 +31,14 @@ export const Container = styled.div`
     text-align: center;
   }
 
-  .addForm svg{
+  .addForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .addForm svg {
+    color: #66CABC;
   }
 
   @media screen and (max-width: 1000px)

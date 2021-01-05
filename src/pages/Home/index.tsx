@@ -37,21 +37,23 @@ interface Form {
   term: string;
   link: string;
   inventory: Inventory;
+  created_at: string;
+  updated_at: string;
 }
 
 const Home: React.FC = () => {
-  const { userToken } = useAuth();
+  const { userToken, userData } = useAuth();
   const [formsData, setFormsData] = useState<Form[]>([]);
 
-  const config = {
-    headers: { Authorization: `Bearer ${userToken}` }
-  };
-
   useEffect(() => {
-    api.get('forms', config).then( response => {
+    const config = {
+      headers: { Authorization: `Bearer ${userToken}` }
+    };
+
+    api.get(`forms/findByUser/${userData.id}`, config).then( response => {
       setFormsData(response.data);
     });
-  }, [config]);
+  }, [userData.id, userToken]);
 
   return(
     <>
@@ -63,28 +65,28 @@ const Home: React.FC = () => {
         <section className="card-sections">
           <Card>
             <Card.Header>Crie um formulário</Card.Header>
-            <Card.Body>
-              <Link className="addForm" to="/">
-                  <FiPlusCircle size={60}/>
+            <Card.Body className="addForm">
+              <Link to="/">
+                  <FiPlusCircle size={80}/>
               </Link>
             </Card.Body>
           </Card>
 
             {formsData.map(form => {
               return(
-                <Card>
+                <Card key={form.id}>
                   <Card.Header>{form.name}</Card.Header>
 
                   <Card.Body>
-                    <Card.Title></Card.Title>
                     <Card.Text>
-
+                      <p>Criado em: {form.created_at.substring(0,10)}</p>
+                      <p>Atualizado em: {form.updated_at.substring(0,10)}</p>
                     </Card.Text>
 
                     <Link to={{
-                      pathname: "/",
+                      pathname: "/formdata",
                       state: {
-                        passFormId: form
+                        Form: form
                       }
                     }}>
                       <ButtonDefault>Visualizar</ButtonDefault>
