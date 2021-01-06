@@ -16,11 +16,12 @@ import SignUp from '../pages/SignUp';
 
 import Home from '../pages/Home';
 import FormData from '../pages/FormData';
+import AddForm from '../pages/AddForm';
 
 const Routes: React.FC = () => (
     <Switch>
-        <Route path='/' component={SignIn} exact/>
-        <Route path='/signup' component={SignUp}/>
+        <Route path='/' component={SignIn} authAuto exact/>
+        <Route path='/signup' component={SignUp} authAuto />
 
         <Route path='/homeform/:id' component={HomeForm}/>
         <Route path='/consentform' component={ConsentForm}/>
@@ -32,6 +33,7 @@ const Routes: React.FC = () => (
 
         <Route path="/home" component={Home} isPrivate />
         <Route path="/formdata" component={FormData} isPrivate />
+        <Route path="/addform" component={AddForm} isPrivate />
     </Switch>
 );
 

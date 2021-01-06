@@ -42,7 +42,7 @@ interface Form {
 }
 
 const Home: React.FC = () => {
-  const { userToken, userData } = useAuth();
+  const { userToken, userData, signOut } = useAuth();
   const [formsData, setFormsData] = useState<Form[]>([]);
 
   useEffect(() => {
@@ -52,6 +52,8 @@ const Home: React.FC = () => {
 
     api.get(`forms/findByUser/${userData.id}`, config).then( response => {
       setFormsData(response.data);
+    }).catch(error => {
+      signOut();
     });
   }, [userData.id, userToken]);
 
@@ -66,7 +68,7 @@ const Home: React.FC = () => {
           <Card>
             <Card.Header>Crie um formulário</Card.Header>
             <Card.Body className="addForm">
-              <Link to="/">
+              <Link to="/addform">
                   <FiPlusCircle size={80}/>
               </Link>
             </Card.Body>
