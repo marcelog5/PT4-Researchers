@@ -30,7 +30,7 @@ interface QuestionsAnswer {
     term: string;
     link: string;
     inventory: Inventory;
-  }
+  };
 }
 
 const FinishFormPage: React.FC = () => {
@@ -46,9 +46,14 @@ const FinishFormPage: React.FC = () => {
         <Container>
           <h1>{location.state.passForm.name}</h1>
 
-          <h3>Muito obrigado pela participação nesse formulário de pesquisa!</h3>
+          <h3>
+            Muito obrigado pela participação nesse formulário de pesquisa!
+          </h3>
 
-          <p>Sua participação ajudará diversos pesquisadores na área da psicometria!</p>
+          <p>
+            Sua participação ajudará diversos pesquisadores na área da
+            psicometria!
+          </p>
 
           <p>Entre em contanto com o pesquisador que compartilhou o link</p>
 
@@ -58,7 +63,7 @@ const FinishFormPage: React.FC = () => {
         </Container>
       </Background>
 
-      <DownBar/>
+      <DownBar />
     </>
   );
 };

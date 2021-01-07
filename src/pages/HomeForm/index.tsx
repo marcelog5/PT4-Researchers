@@ -21,7 +21,6 @@ const HomeForm: React.FC = () => {
     }
 
     AddForm();
-
   }, [location.pathname, history, addForm]);
 
   return (
@@ -34,27 +33,27 @@ const HomeForm: React.FC = () => {
             <h1>Teste do Big 5</h1>
 
             <p>
-              Esse é um método que tenta descrever a sua personalidade em 5 principais traços a partir
-              de diversas questões que serão apresentadas a você.
+              Esse é um método que tenta descrever a sua personalidade em 5
+              principais traços a partir de diversas questões que serão
+              apresentadas a você.
             </p>
 
             <p>
-              Sua contribuição para esse teste influenciará nos estudos de diversos pesquisadores, por isso,
-              responda da maneira que mais se assemelha a você.
+              Sua contribuição para esse teste influenciará nos estudos de
+              diversos pesquisadores, por isso, responda da maneira que mais se
+              assemelha a você.
             </p>
 
-            <Link to={"/consentform"}>
-              <ButtonDefault>
-                Comece aqui!
-              </ButtonDefault>
+            <Link to={'/consentform'}>
+              <ButtonDefault>Comece aqui!</ButtonDefault>
             </Link>
           </div>
         </Container>
       </Background>
 
-      <DownBar/>
+      <DownBar />
     </>
-  );/*  */
+  ); /*  */
 };
 
 export default HomeForm;

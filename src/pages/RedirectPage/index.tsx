@@ -14,11 +14,14 @@ const RedirectPage: React.FC = () => {
         <Container>
           <h1>Sinto muito, mas a página que você tentou acessar não existe</h1>
 
-          <p>Contate o pesquisador que compartilhou o link para obter mais informações</p>
+          <p>
+            Contate o pesquisador que compartilhou o link para obter mais
+            informações
+          </p>
         </Container>
       </Background>
 
-      <DownBar/>
+      <DownBar />
     </>
   );
 };

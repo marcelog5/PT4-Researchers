@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { FiPlusCircle } from "react-icons/fi";
+import { FiPlusCircle } from 'react-icons/fi';
 import { Card } from 'react-bootstrap';
 
 import api from '../../services/api';
@@ -44,53 +44,63 @@ interface Form {
 const Home: React.FC = () => {
   const { userToken, userData, signOut } = useAuth();
   const [formsData, setFormsData] = useState<Form[]>([]);
+  const history = useHistory();
 
   useEffect(() => {
-    const config = {
-      headers: { Authorization: `Bearer ${userToken}` }
-    };
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${userToken}` },
+      };
 
-    api.get(`forms/findByUser/${userData.id}`, config).then( response => {
-      setFormsData(response.data);
-    }).catch(error => {
+      api
+        .get(`forms/findByUser/${userData.id}`, config)
+        .then((response) => {
+          setFormsData(response.data);
+        })
+        .catch((error) => {
+          signOut();
+        });
+    } catch (error) {
       signOut();
-    });
-  }, [userData.id, userToken]);
+      history.push('/');
+    }
+  }, [userData, userToken, signOut, history]);
 
-  return(
+  return (
     <>
       <UpBar></UpBar>
 
       <Background>
         <Container>
+          <section className="card-sections">
+            <Card>
+              <Card.Header>Crie um formulário</Card.Header>
+              <Card.Body className="addForm">
+                <Link to="/addform">
+                  <FiPlusCircle size={80} />
+                </Link>
+              </Card.Body>
+            </Card>
 
-        <section className="card-sections">
-          <Card>
-            <Card.Header>Crie um formulário</Card.Header>
-            <Card.Body className="addForm">
-              <Link to="/addform">
-                  <FiPlusCircle size={80}/>
-              </Link>
-            </Card.Body>
-          </Card>
-
-            {formsData.map(form => {
-              return(
+            {formsData.map((form) => {
+              return (
                 <Card key={form.id}>
                   <Card.Header>{form.name}</Card.Header>
 
                   <Card.Body>
                     <Card.Text>
-                      <p>Criado em: {form.created_at.substring(0,10)}</p>
-                      <p>Atualizado em: {form.updated_at.substring(0,10)}</p>
+                      <p>Criado em: {form.created_at.substring(0, 10)}</p>
+                      <p>Atualizado em: {form.updated_at.substring(0, 10)}</p>
                     </Card.Text>
 
-                    <Link to={{
-                      pathname: "/formdata",
-                      state: {
-                        Form: form
-                      }
-                    }}>
+                    <Link
+                      to={{
+                        pathname: '/formdata',
+                        state: {
+                          Form: form,
+                        },
+                      }}
+                    >
                       <ButtonDefault>Visualizar</ButtonDefault>
                     </Link>
                   </Card.Body>

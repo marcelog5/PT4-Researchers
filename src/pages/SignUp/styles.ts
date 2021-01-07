@@ -4,7 +4,7 @@ import { shade } from 'polished';
 import BackgroundImg from '../../assets/BackgroundHome.jpg';
 
 interface ContentProps {
-  display:string
+  display: string;
 }
 
 export const Background = styled.div`
@@ -29,8 +29,7 @@ export const Container = styled.div`
   margin: 30px 2%;
   border-radius: 50px;
 
-  @media screen and (max-width: 1000px)
-  {
+  @media screen and (max-width: 1000px) {
     max-width: 500px;
 
     p {
@@ -38,8 +37,7 @@ export const Container = styled.div`
     }
   }
 
-  @media screen and (max-width: 640px)
-  {
+  @media screen and (max-width: 640px) {
     max-width: 400px;
   }
 `;
@@ -77,24 +75,23 @@ export const Content = styled.div<ContentProps>`
       border-radius: 20px;
     }
 
-    div#texto div{
+    div#texto div {
       display: ${(props) => props.display};
     }
   }
 
   a {
-      color: #FFBFB9;
-      display: block;
-      text-decoration: none;
-      transition: 0.2s;
+    color: #ffbfb9;
+    display: block;
+    text-decoration: none;
+    transition: 0.2s;
   }
 
   a:hover {
-    color: ${shade(0.2, '#FFBFB9')}
+    color: ${shade(0.2, '#FFBFB9')};
   }
 
-  @media screen and (max-width: 640px)
-  {
+  @media screen and (max-width: 640px) {
     button {
       margin: 10px 0;
       height: 38px;

@@ -19,22 +19,25 @@ import FormData from '../pages/FormData';
 import AddForm from '../pages/AddForm';
 
 const Routes: React.FC = () => (
-    <Switch>
-        <Route path='/' component={SignIn} authAuto exact/>
-        <Route path='/signup' component={SignUp} authAuto />
+  <Switch>
+    <Route path="/" component={SignIn} authAuto exact />
+    <Route path="/signup" component={SignUp} authAuto />
 
-        <Route path='/homeform/:id' component={HomeForm}/>
-        <Route path='/consentform' component={ConsentForm}/>
-        <Route path='/questionsform' component={QuestionsForm}/>
-        <Route path='/respondentinformationform' component={RespondentInformationForm}/>
-        <Route path='/formnotexist' component={RedirectPage}/>
-        <Route path='/finishform' component={FinishFormPage}/>
-        <Route path='/tutorialform' component={TutorialForm}/>
+    <Route path="/homeform/:id" component={HomeForm} />
+    <Route path="/consentform" component={ConsentForm} />
+    <Route path="/questionsform" component={QuestionsForm} />
+    <Route
+      path="/respondentinformationform"
+      component={RespondentInformationForm}
+    />
+    <Route path="/formnotexist" component={RedirectPage} />
+    <Route path="/finishform" component={FinishFormPage} />
+    <Route path="/tutorialform" component={TutorialForm} />
 
-        <Route path="/home" component={Home} isPrivate />
-        <Route path="/formdata" component={FormData} isPrivate />
-        <Route path="/addform" component={AddForm} isPrivate />
-    </Switch>
+    <Route path="/home" component={Home} isPrivate />
+    <Route path="/formdata" component={FormData} isPrivate />
+    <Route path="/addform" component={AddForm} isPrivate />
+  </Switch>
 );
 
 export default Routes;

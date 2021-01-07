@@ -46,8 +46,8 @@ const FormProvider: React.FC = ({ children }) => {
   });
 
   const addForm = useCallback(async (link) => {
-    const response = await api.get('forms/' + link).then(response => {
-      if(response.data.message === 'Form not found.'){
+    const response = await api.get('forms/' + link).then((response) => {
+      if (response.data.message === 'Form not found.') {
         return false;
       } else {
         localStorage.setItem('@PT4:form', JSON.stringify(response.data));
@@ -57,10 +57,8 @@ const FormProvider: React.FC = ({ children }) => {
         return true;
       }
     });
-    if(response)
-      return true;
-    else
-      return false;
+    if (response) return true;
+    else return false;
   }, []);
 
   const removeForm = useCallback(() => {
@@ -70,16 +68,16 @@ const FormProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <FormContext.Provider value={{formData: data, addForm, removeForm}}>
+    <FormContext.Provider value={{ formData: data, addForm, removeForm }}>
       {children}
     </FormContext.Provider>
   );
-}
+};
 
 function useForm(): FormContextData {
   const context = useContext(FormContext);
 
-  if(!context) {
+  if (!context) {
     throw new Error('useForm must be used within a FormProvider');
   }
 

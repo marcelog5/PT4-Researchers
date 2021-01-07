@@ -47,7 +47,7 @@ interface RespondentData {
   age: string;
   gender: string;
   questionsAnswer: number[];
-  answer?: string
+  answer?: string;
   schooling: string;
   state: string;
   created_at: string;
@@ -64,10 +64,10 @@ const FormData: React.FC = () => {
 
   useEffect(() => {
     const config = {
-      headers: { Authorization: `Bearer ${userToken}` }
+      headers: { Authorization: `Bearer ${userToken}` },
     };
 
-    api.get(`respondents/${form.id}`, config).then( response => {
+    api.get(`respondents/${form.id}`, config).then((response) => {
       setRespondentsData(response.data);
     });
   }, [form.id, userToken]);
@@ -75,7 +75,7 @@ const FormData: React.FC = () => {
   function handleExportButton() {
     let data = [];
 
-    for(let i=0; i < respondentsData.length; i++) {
+    for (let i = 0; i < respondentsData.length; i++) {
       data[i] = {
         Idade: respondentsData[i].age,
         Genero: respondentsData[i].gender,
@@ -83,7 +83,7 @@ const FormData: React.FC = () => {
         Estado: respondentsData[i].state,
         Realizado: respondentsData[i].created_at,
         Respostas: respondentsData[i].questionsAnswer.toString(),
-      }
+      };
     }
 
     const options = {
@@ -102,20 +102,22 @@ const FormData: React.FC = () => {
     csvExporter.generateCsv(data);
   }
 
-  return(
+  return (
     <>
       <UpBar></UpBar>
 
       <Background>
         <Container>
-          <p className="title">Número de respondentes: {respondentsData.length}</p>
+          <p className="title">
+            Número de respondentes: {respondentsData.length}
+          </p>
 
           <section className="Items">
             <p className="title">Itens da pesquisa atual:</p>
 
             <div className="questionContainer">
               <ul>
-                {form.inventory.questions.map(question => {
+                {form.inventory.questions.map((question) => {
                   return (
                     <li key={question.id}>
                       <p>{question.question}</p>
@@ -141,42 +143,35 @@ const FormData: React.FC = () => {
                     <th>Score médio</th>
                   </tr>
                 </thead>
-                  <tbody>
-                    {respondentsData.map(respondent => {
-                      return (
-                        <tr key={respondent.id}>
-                          <td>{respondent.age.substring(0,10)}</td>
-                          <td>{respondent.gender}</td>
-                          <td>{respondent.schooling}</td>
-                          <td>{respondent.state}</td>
-                          <td>{respondent.created_at.substring(0,10)}</td>
-                          <td>20</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
+                <tbody>
+                  {respondentsData.map((respondent) => {
+                    return (
+                      <tr key={respondent.id}>
+                        <td>{respondent.age.substring(0, 10)}</td>
+                        <td>{respondent.gender}</td>
+                        <td>{respondent.schooling}</td>
+                        <td>{respondent.state}</td>
+                        <td>{respondent.created_at.substring(0, 10)}</td>
+                        <td>20</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
               </table>
             </div>
           </section>
 
           <section className="buttonMenu">
             <Link to="/">
-              <ButtonDefault>
-                Voltar
-              </ButtonDefault>
+              <ButtonDefault>Voltar</ButtonDefault>
             </Link>
 
-            <ButtonDefault>
-              Apagar
-            </ButtonDefault>
+            <ButtonDefault>Apagar</ButtonDefault>
 
-            <ButtonDefault onClick={handleExportButton}>
-              Exportar
-            </ButtonDefault>
+            <ButtonDefault onClick={handleExportButton}>Exportar</ButtonDefault>
           </section>
         </Container>
       </Background>
-
 
       <DownBar></DownBar>
     </>

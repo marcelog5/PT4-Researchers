@@ -7,7 +7,7 @@ export const Footer = styled.div`
   background-color: black;
 
   p {
-    text-align:center;
+    text-align: center;
     font-size: 12px;
   }
 `;

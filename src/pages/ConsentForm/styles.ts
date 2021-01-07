@@ -24,8 +24,7 @@ export const Container = styled.div`
   border-radius: 50px;
   margin: 30px 2%;
 
-  @media screen and (max-width: 1000px)
-  {
+  @media screen and (max-width: 1000px) {
     max-width: 500px;
 
     p {
@@ -37,11 +36,10 @@ export const Container = styled.div`
     }
   }
 
-  @media screen and (max-width: 640px)
-  {
+  @media screen and (max-width: 640px) {
     max-width: 400px;
   }
-`
+`;
 
 export const ResearchLink = styled.div`
   margin: 40px 2% 20px 2%;
@@ -69,8 +67,7 @@ export const ContainerButton = styled.div`
   padding: 0 30px;
   margin: 10px 2% 40px 2%;
 
-  @media screen and (max-width: 640px)
-  {
+  @media screen and (max-width: 640px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;

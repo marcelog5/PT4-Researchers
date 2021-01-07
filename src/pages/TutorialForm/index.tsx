@@ -26,8 +26,10 @@ const TutorialForm: React.FC = () => {
             </p> */}
 
             <p>
-            Nas páginas seguintes, serão apresentadas {formData.inventory.numberOfQuestions} afirmações que
-            tratam de características pessoais. Leia cada uma com atenção e, atribua um valor na escala de 1 a 5, sendo:
+              Nas páginas seguintes, serão apresentadas{' '}
+              {formData.inventory.numberOfQuestions} afirmações que tratam de
+              características pessoais. Leia cada uma com atenção e, atribua um
+              valor na escala de 1 a 5, sendo:
             </p>
 
             <div className="labels">
@@ -58,8 +60,8 @@ const TutorialForm: React.FC = () => {
             </div>
 
             <p>
-              É obrigatório responder a todos os itens, caso não responda, você será empedido de continuar
-              o questionário.
+              É obrigatório responder a todos os itens, caso não responda, você
+              será empedido de continuar o questionário.
             </p>
 
             <p>
@@ -67,16 +69,12 @@ const TutorialForm: React.FC = () => {
             </p>
           </div>
           <ContainerButton>
-            <Link to={"/consentform"}>
-              <ButtonDefault>
-                Voltar
-              </ButtonDefault>
+            <Link to={'/consentform'}>
+              <ButtonDefault>Voltar</ButtonDefault>
             </Link>
 
-            <Link to={"/questionsform"}>
-              <ButtonDefault>
-                Continuar
-              </ButtonDefault>
+            <Link to={'/questionsform'}>
+              <ButtonDefault>Continuar</ButtonDefault>
             </Link>
           </ContainerButton>
         </Container>

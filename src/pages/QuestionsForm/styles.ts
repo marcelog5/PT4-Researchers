@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import BackgroundImg from '../../assets/BackgroundBase.jpg';
 
 interface ContainerProps {
-  display:string
+  display: string;
 }
 
 export const Background = styled.div`
@@ -28,23 +28,23 @@ export const Container = styled.div`
   .alert {
     position: fixed;
     margin-top: 100px;
-    background-color: #FFBFB9;
+    background-color: #ffbfb9;
   }
 
-  form{
+  form {
     margin-top: 50px;
   }
 
   li {
-    list-style: none
+    list-style: none;
   }
 
-  li p{
+  li p {
     margin: 40px 0 10px 0;
     font-size: 22px;
   }
 
-  input[type=radio] {
+  input[type='radio'] {
     position: absolute;
     visibility: hidden;
     display: none;
@@ -56,7 +56,7 @@ export const Container = styled.div`
     height: 60px;
     width: 60px;
     line-height: 60px;
-    background-color: #E8F8F8;
+    background-color: #e8f8f8;
     cursor: pointer;
     font-weight: bold;
     margin: 30px;
@@ -79,21 +79,20 @@ export const Container = styled.div`
     width: 50%;
     height: 28px;
     border-radius: 20px;
-    background-color: #CCEFF1;
+    background-color: #cceff1;
     position: fixed;
   }
 
   .progress-bar {
-    background-color: #77BABA;
+    background-color: #77baba;
   }
 
   .selected {
-    background-color: #77BABA;
+    background-color: #77baba;
   }
 
-  @media screen and (max-width: 600px)
-  {
-    .radio-group{
+  @media screen and (max-width: 600px) {
+    .radio-group {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -126,8 +125,7 @@ export const ContainerButton = styled.div<ContainerProps>`
   display: ${(props) => props.display};
   padding: 0 60px;
 
-  @media screen and (max-width: 600px)
-  {
+  @media screen and (max-width: 600px) {
     margin-top: 16px;
   }
 `;

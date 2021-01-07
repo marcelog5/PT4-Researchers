@@ -60,7 +60,7 @@ const AuthProvider: React.FC = ({ children }) => {
     localStorage.setItem('@PT4:token', token);
     localStorage.setItem('@PT4:user', JSON.stringify(userData));
 
-    setData({ token, userData })
+    setData({ token, userData });
   }, []);
 
   const signOut = useCallback(() => {
@@ -71,7 +71,14 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ userToken: data.token, userData: data.userData, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{
+        userToken: data.token,
+        userData: data.userData,
+        signIn,
+        signOut,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -88,4 +95,3 @@ function useAuth(): AuthContextData {
 }
 
 export { AuthProvider, useAuth };
-

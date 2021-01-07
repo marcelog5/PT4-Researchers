@@ -15,4 +15,4 @@ export const Logo = styled.div`
 export const Bar = styled.div`
   width: 90%;
   background-color: #c4f1f2;
-`
+`;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Button = styled.div`
-  button{
+  button {
     width: 170px;
     margin-top: 15px;
     line-height: 24px;
@@ -12,7 +12,7 @@ export const Button = styled.div`
     border-radius: 8px;
     color: #000;
     border-width: 0;
-    background: #72E1D1;
+    background: #72e1d1;
     opacity: 1;
     cursor: pointer;
     transition: background-color 0.2s;

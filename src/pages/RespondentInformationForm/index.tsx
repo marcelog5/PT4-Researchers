@@ -21,7 +21,7 @@ interface IBGECityResponse {
 interface QuestionsAnswer {
   passAnswer: {
     selectedQuestions: number[];
-  }
+  };
 }
 
 interface SubmitData {
@@ -40,16 +40,21 @@ const RespondentInformationForm: React.FC = () => {
   const [selectedCity, setSelectedCity] = useState('0');
   const [selectedSchooling, setSelectedSchooling] = useState('0');
   const [selectedGender, setSelectedGender] = useState('0');
-  const [selectedAge, setSelectedAge] = useState<string>(`${today.getFullYear() - 2}-01-01`);
+  const [selectedAge, setSelectedAge] = useState<string>(
+    `${today.getFullYear() - 2}-01-01`,
+  );
   const [show, setShow] = useState(false);
 
-
   useEffect(() => {
-    axios.get<IBGECityResponse[]>("https://servicodados.ibge.gov.br/api/v1/localidades/estados").then(response => {
-        const cityNames = response.data.map(city => city.nome);
+    axios
+      .get<IBGECityResponse[]>(
+        'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
+      )
+      .then((response) => {
+        const cityNames = response.data.map((city) => city.nome);
 
         setCities(cityNames.sort());
-    });
+      });
   }, []);
 
   function handleSelectGender(event: ChangeEvent<HTMLSelectElement>) {
@@ -77,20 +82,20 @@ const RespondentInformationForm: React.FC = () => {
   }
 
   async function handleSubmit(data: SubmitData) {
-    const gender = selectedGender
+    const gender = selectedGender;
     const schooling = selectedSchooling;
     const age = selectedAge;
     var state = selectedCity;
     const questionsAnswer = location.state.passAnswer;
     const form_id = formData.id;
 
-    if(gender === "0" || schooling === "0" || state === "0"){
+    if (gender === '0' || schooling === '0' || state === '0') {
       setShow(true);
       return;
     }
 
     if (state === '1') {
-      if (data.Estado !== null && data.Estado !== "") {
+      if (data.Estado !== null && data.Estado !== '') {
         state = data.Estado;
       } else {
         setShow(true);
@@ -104,23 +109,25 @@ const RespondentInformationForm: React.FC = () => {
       age,
       state,
       questionsAnswer,
-      form_id
+      form_id,
     };
 
-    await api.post('respondents', dataSubmit)
-        .then((response) => {
-            removeForm();
+    await api.post('respondents', dataSubmit).then(
+      (response) => {
+        removeForm();
 
-            history.push({
-              pathname: "/finishform",
-              state: {
-                passForm: formData,
-              }
-            });
-        }, (error) => {
-            alert('Erro no envio');
-            return;
+        history.push({
+          pathname: '/finishform',
+          state: {
+            passForm: formData,
+          },
         });
+      },
+      (error) => {
+        alert('Erro no envio');
+        return;
+      },
+    );
   }
 
   function AlertQuestion() {
@@ -128,15 +135,12 @@ const RespondentInformationForm: React.FC = () => {
       return (
         <Alert variant="danger" onClose={() => setShow(false)} dismissible>
           <Alert.Heading>Marque todos os itens</Alert.Heading>
-          <p>
-            Parece que você ainda não marcou todos os itens
-          </p>
+          <p>Parece que você ainda não marcou todos os itens</p>
         </Alert>
       );
     }
-    return <div style={{ display: "none" }}></div>;
+    return <div style={{ display: 'none' }}></div>;
   }
-
 
   return (
     <>
@@ -144,22 +148,27 @@ const RespondentInformationForm: React.FC = () => {
 
       <Background>
         <Container display={'1' === selectedCity ? 'flex' : 'none'}>
-          <AlertQuestion/>
+          <AlertQuestion />
 
           <h1>Fale sobre você</h1>
 
           <Form onSubmit={handleSubmit}>
             <label>Data de nascimento</label>
             <input
-            type="date"
-            onChange={handleSelectAge}
-            value={selectedAge.toString()}
-            max={`${today.getFullYear() - 1}-01-01`}
-            min="1900-06-01"
+              type="date"
+              onChange={handleSelectAge}
+              value={selectedAge.toString()}
+              max={`${today.getFullYear() - 1}-01-01`}
+              min="1900-06-01"
             />
 
             <label>Sexo</label>
-            <select name="gender" id="gender" value={selectedGender} onChange={handleSelectGender}>
+            <select
+              name="gender"
+              id="gender"
+              value={selectedGender}
+              onChange={handleSelectGender}
+            >
               <option value="0">Selecione o seu sexo</option>
               <option value="Masculino">Masculino</option>
               <option value="Feminino">Feminino</option>
@@ -167,48 +176,72 @@ const RespondentInformationForm: React.FC = () => {
             </select>
 
             <label>Escolaridade</label>
-            <select name="schooling" id="schooling" value={selectedSchooling} onChange={handleSelectSchooling}>
+            <select
+              name="schooling"
+              id="schooling"
+              value={selectedSchooling}
+              onChange={handleSelectSchooling}
+            >
               <option value="0">Selecione uma escolaridade</option>
-              <option value="Fundamental - Incompleto">Fundamental - Incompleto</option>
-              <option value="Fundamental - Completo">Fundamental - Completo</option>
+              <option value="Fundamental - Incompleto">
+                Fundamental - Incompleto
+              </option>
+              <option value="Fundamental - Completo">
+                Fundamental - Completo
+              </option>
               <option value="Médio - Incompleto">Médio - Incompleto</option>
               <option value="Médio - Completo">Médio - Completo</option>
-              <option value="Superior - Incompleto">Superior - Incompleto</option>
+              <option value="Superior - Incompleto">
+                Superior - Incompleto
+              </option>
               <option value="Superior - Completo">Superior - Completo</option>
-              <option value="Pós-graduação (Lato senso)">Pós-graduação (Lato senso)</option>
-              <option value="Pós-graduação (Stricto sensu, nível mestrado)">Pós-graduação (Stricto sensu, nível mestrado)</option>
-              <option value="Pós-graduação (Stricto sensu, nível doutor)">Pós-graduação (Stricto sensu, nível doutor)</option>
+              <option value="Pós-graduação (Lato senso)">
+                Pós-graduação (Lato senso)
+              </option>
+              <option value="Pós-graduação (Stricto sensu, nível mestrado)">
+                Pós-graduação (Stricto sensu, nível mestrado)
+              </option>
+              <option value="Pós-graduação (Stricto sensu, nível doutor)">
+                Pós-graduação (Stricto sensu, nível doutor)
+              </option>
             </select>
 
             <label>Estado</label>
-            <select name="city" id="city" value={selectedCity} onChange={handleSelectCity}>
+            <select
+              name="city"
+              id="city"
+              value={selectedCity}
+              onChange={handleSelectCity}
+            >
               <option value="0">Selecione o seu Estado</option>
-                {cities.map(city => (
-                    <option key={city} value={city}>{city}</option>
-                ))}
+              {cities.map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
               <option value="1">Outro país</option>
             </select>
 
             <div id="texto">
-              <Input type="text" name="Estado" placeholder="Digite onde você reside"/>
+              <Input
+                type="text"
+                name="Estado"
+                placeholder="Digite onde você reside"
+              />
             </div>
 
             <ContainerButton>
-              <Link to={"/questionsform"}>
-                <ButtonDefault>
-                  Voltar
-                </ButtonDefault>
+              <Link to={'/questionsform'}>
+                <ButtonDefault>Voltar</ButtonDefault>
               </Link>
 
-              <ButtonDefault type="submit">
-                Enviar
-              </ButtonDefault>
+              <ButtonDefault type="submit">Enviar</ButtonDefault>
             </ContainerButton>
           </Form>
         </Container>
       </Background>
 
-      <DownBar/>
+      <DownBar />
     </>
   );
 };

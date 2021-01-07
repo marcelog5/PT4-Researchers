@@ -7,7 +7,7 @@ interface Errors {
 export default function getValidationErrors(err: ValidationError): Errors {
   const ValidationErrors: Errors = {};
 
-  err.inner.forEach(error => {
+  err.inner.forEach((error) => {
     ValidationErrors[error.path] = error.message;
   });
 

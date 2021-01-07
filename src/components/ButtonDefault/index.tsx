@@ -1,8 +1,8 @@
-import React, {ButtonHTMLAttributes} from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 
 import { Button } from './styles';
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 const ButtonDefault: React.FC<ButtonProps> = ({ children, ...rest }) => (
   <Button>

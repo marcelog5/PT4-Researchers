@@ -24,9 +24,9 @@ export const Container = styled.div`
 
   .questionContainer {
     height: 400px;
-    border: 6px solid #CCEFF1;
+    border: 6px solid #cceff1;
     border-radius: 12px;
-    background-color: #E8F8F8;
+    background-color: #e8f8f8;
     padding-top: 12px;
     padding-left: 4%;
     overflow-y: auto;
@@ -42,15 +42,15 @@ export const Container = styled.div`
 
   .RespondentsContainer {
     height: 400px;
-    border: 6px solid #CCEFF1;
+    border: 6px solid #cceff1;
     border-radius: 12px;
-    background-color: #E8F8F8;
+    background-color: #e8f8f8;
     padding-top: 12px;
     overflow-y: auto;
     overflow-x: auto;
   }
 
-  .RespondentsContainer table{
+  .RespondentsContainer table {
     width: 100%;
   }
 
@@ -72,8 +72,7 @@ export const Container = styled.div`
     margin-bottom: 40px;
   }
 
-  @media screen and (max-width: 1000px)
-  {
+  @media screen and (max-width: 1000px) {
     max-width: 500px;
 
     p {
@@ -85,8 +84,7 @@ export const Container = styled.div`
     }
   }
 
-  @media screen and (max-width: 640px)
-  {
+  @media screen and (max-width: 640px) {
     max-width: 400px;
   }
 `;

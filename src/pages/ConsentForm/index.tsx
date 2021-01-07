@@ -7,7 +7,13 @@ import { useForm } from '../../hooks/Form';
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
 
-import { Background, Container, ResearchLink, ResearchTerm, ContainerButton } from './styles';
+import {
+  Background,
+  Container,
+  ResearchLink,
+  ResearchTerm,
+  ContainerButton,
+} from './styles';
 
 const ConsentForm: React.FC = () => {
   const { formData } = useForm();
@@ -20,7 +26,9 @@ const ConsentForm: React.FC = () => {
         <Container>
           <ResearchLink>
             <h5>Link para o Termo de consentimento do pesquisador</h5>
-            <a href={formData.link} target="_blanck">{formData.link}</a>
+            <a href={formData.link} target="_blanck">
+              {formData.link}
+            </a>
           </ResearchLink>
 
           <ResearchTerm>
@@ -29,16 +37,12 @@ const ConsentForm: React.FC = () => {
           </ResearchTerm>
 
           <ContainerButton>
-            <Link to={"/tutorialform"}>
-              <ButtonDefault>
-                Aceito participar
-              </ButtonDefault>
+            <Link to={'/tutorialform'}>
+              <ButtonDefault>Aceito participar</ButtonDefault>
             </Link>
 
             <Link to={`/homeform/${formData.id}`}>
-              <ButtonDefault>
-                Não aceito participar
-              </ButtonDefault>
+              <ButtonDefault>Não aceito participar</ButtonDefault>
             </Link>
           </ContainerButton>
         </Container>

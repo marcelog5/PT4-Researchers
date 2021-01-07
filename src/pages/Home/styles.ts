@@ -38,11 +38,10 @@ export const Container = styled.div`
   }
 
   .addForm svg {
-    color: #66CABC;
+    color: #66cabc;
   }
 
-  @media screen and (max-width: 1000px)
-  {
+  @media screen and (max-width: 1000px) {
     max-width: 500px;
 
     p {
@@ -54,8 +53,7 @@ export const Container = styled.div`
     }
   }
 
-  @media screen and (max-width: 640px)
-  {
+  @media screen and (max-width: 640px) {
     max-width: 400px;
   }
 `;

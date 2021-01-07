@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import BackgroundImg from '../../assets/BackgroundBase.jpg';
 
 interface ContainerProps {
-  display:string
+  display: string;
 }
 
 export const Background = styled.div`
@@ -29,7 +29,7 @@ export const Container = styled.div<ContainerProps>`
   .alert {
     position: fixed;
     margin-top: 100px;
-    background-color: #FFBFB9;
+    background-color: #ffbfb9;
   }
 
   h1 {
@@ -46,9 +46,9 @@ export const Container = styled.div<ContainerProps>`
     margin: 20px 0 6px 0;
   }
 
-  input[type=date]{
+  input[type='date'] {
     width: 100%;
-    background-color: #E8F8F8;
+    background-color: #e8f8f8;
     color: black;
     padding: 14px 20px;
     margin: 8px 0;
@@ -56,15 +56,15 @@ export const Container = styled.div<ContainerProps>`
     border-radius: 16px;
   }
 
-  div#texto div{
-    background-color: #E8F8F8;
+  div#texto div {
+    background-color: #e8f8f8;
     border: 1px solid #ccc;
     display: ${(props) => props.display};
   }
 
   select {
     width: 100%;
-    background-color: #E8F8F8;
+    background-color: #e8f8f8;
     color: black;
     padding: 14px 20px;
     margin: 8px 0;
@@ -80,8 +80,7 @@ export const ContainerButton = styled.div`
   justify-content: space-between;
   margin: 60px auto;
 
-  @media screen and (max-width: 640px)
-  {
+  @media screen and (max-width: 640px) {
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;

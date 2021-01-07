@@ -39,19 +39,19 @@ export const Container = styled.div`
     height: 60px;
     width: 60px;
     line-height: 60px;
-    background-color: #E8F8F8;
+    background-color: #e8f8f8;
     font-weight: bold;
     text-align: center;
   }
 
-  .labels div{
+  .labels div {
     display: flex;
     align-items: center;
     justify-content: left;
     margin-left: 16%;
   }
 
-  .labels div p{
+  .labels div p {
     height: 30px;
     margin: 10px 0 0 20px;
   }
@@ -61,13 +61,12 @@ export const Container = styled.div`
     text-align: center;
   }
 
-  .labels span{
+  .labels span {
     font-size: 60px;
     font-style: bold;
   }
 
-  @media screen and (max-width: 1000px)
-  {
+  @media screen and (max-width: 1000px) {
     max-width: 500px;
 
     p {
@@ -79,22 +78,21 @@ export const Container = styled.div`
     }
   }
 
-  @media screen and (max-width: 640px)
-  {
+  @media screen and (max-width: 640px) {
     max-width: 400px;
 
-    .labels div{
+    .labels div {
       flex-direction: column-reverse;
       align-items: center;
       justify-content: center;
       margin: 10px 0 0 0;
     }
 
-    .labels div p{
+    .labels div p {
       margin: 10px 0 0 0;
     }
   }
-`
+`;
 
 export const ContainerButton = styled.div`
   display: flex;
@@ -103,8 +101,7 @@ export const ContainerButton = styled.div`
   padding: 0 30px;
   margin: 10px 2% 40px 2%;
 
-  @media screen and (max-width: 640px)
-  {
+  @media screen and (max-width: 640px) {
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;

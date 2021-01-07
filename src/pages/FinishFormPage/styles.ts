@@ -21,14 +21,14 @@ export const Container = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50px;
-  text-align:center;
+  text-align: center;
 
   h1 {
     font-size: 50px;
     margin-bottom: 24px;
   }
 
-  h3{
+  h3 {
     margin-bottom: 24px;
   }
 

@@ -18,23 +18,23 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
 
   ${(props) =>
-  props.isErrored &&
-  css`
-    border-color: #c53030;
-  `}
+    props.isErrored &&
+    css`
+      border-color: #c53030;
+    `}
 
   ${(props) =>
-  props.isFocused &&
-  css`
-    color: #FFBFB9;
-    border-color: #FFBFB9;
-  `}
+    props.isFocused &&
+    css`
+      color: #ffbfb9;
+      border-color: #ffbfb9;
+    `}
 
   ${(props) =>
-  props.isFilled &&
-  css`
-    color: #FFBFB9;
-  `}
+    props.isFilled &&
+    css`
+      color: #ffbfb9;
+    `}
 
   select {
     border: none;

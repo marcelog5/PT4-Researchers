@@ -18,23 +18,23 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
 
   ${(props) =>
-  props.isErrored &&
-  css`
-    border-color: #c53030;
-  `}
+    props.isErrored &&
+    css`
+      border-color: #c53030;
+    `}
 
   ${(props) =>
-  props.isFocused &&
-  css`
-    color: #FFBFB9;
-    border-color: #FFBFB9;
-  `}
+    props.isFocused &&
+    css`
+      color: #ffbfb9;
+      border-color: #ffbfb9;
+    `}
 
   ${(props) =>
-  props.isFilled &&
-  css`
-    color: #FFBFB9;
-  `}
+    props.isFilled &&
+    css`
+      color: #ffbfb9;
+    `}
 
 
   input {
@@ -43,14 +43,14 @@ export const Container = styled.div<ContainerProps>`
     border: 0;
   }
 
-  input[type="date"]::before{
-   content: attr(placeholder) ": ";
+  input[type='date']::before {
+    content: attr(placeholder) ': ';
   }
-  input[type="date"]:focus::before {
-    content: "" !important;
+  input[type='date']:focus::before {
+    content: '' !important;
   }
 
-  input::-webkit-calendar-picker-indicator{
+  input::-webkit-calendar-picker-indicator {
     display: none;
   }
 

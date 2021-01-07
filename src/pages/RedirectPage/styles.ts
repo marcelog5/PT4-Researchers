@@ -29,7 +29,7 @@ export const Container = styled.div`
   }
 
   p {
-    text-align:center;
+    text-align: center;
     font-size: 16px;
     margin-bottom: 18px;
   }

@@ -7,9 +7,7 @@ import { FormProvider } from './Form';
 const AppProvider: React.FC = ({ children }) => (
   <AuthProvider>
     <ToastProvider>
-      <FormProvider>
-        {children}
-      </FormProvider>
+      <FormProvider>{children}</FormProvider>
     </ToastProvider>
   </AuthProvider>
 );
