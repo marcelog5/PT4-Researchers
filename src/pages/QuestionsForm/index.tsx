@@ -8,7 +8,7 @@ import { useForm } from '../../hooks/Form';
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
 
-import { Background, Container, ContainerButton } from './styles';
+import { Background, Container, ContainerButton, RadioGroup } from './styles';
 
 const QuestionsForm: React.FC = () => {
   const { formData } = useForm();
@@ -17,6 +17,7 @@ const QuestionsForm: React.FC = () => {
   const numberQuestions = formData.inventory.numberOfQuestions;
 
   const [selectedQuestions, setSelectedQuestions] = useState<number[]>([]);
+  const [emptyQuestions, setEmptyQuestion] = useState<boolean[]>([]);
   const [questionsShow, setQuestionsShow] = useState<number>(5);
   const [show, setShow] = useState(false);
 
@@ -30,17 +31,24 @@ const QuestionsForm: React.FC = () => {
   }
 
   function handleContinueButton() {
-    let questionShow;
+    let questionShow = questionsShow;
+    let empty = [];
     let i = 0;
 
-    questionShow = questionsShow;
+    for (i = 0; i < questionsShow; i++) {
+      !selectedQuestions[i] ? (empty[i] = true) : (empty[i] = false);
+    }
 
-    selectedQuestions.forEach((question) => {
-      i++;
-    });
+    setEmptyQuestion(empty);
 
-    if (i < questionShow) {
+    if (!empty.every((empty) => empty === false)) {
       setShow(true);
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
       return;
     }
 
@@ -58,6 +66,7 @@ const QuestionsForm: React.FC = () => {
         <Alert variant="danger" onClose={() => setShow(false)} dismissible>
           <Alert.Heading>Marque todos os itens</Alert.Heading>
           <p>Parece que você ainda não marcou todos os itens</p>
+          <p>Marque os itens restantes</p>
         </Alert>
       );
     }
@@ -96,7 +105,14 @@ const QuestionsForm: React.FC = () => {
                     <li key={questions.id}>
                       <p>{questions.question}</p>
 
-                      <div className="radio-group">
+                      <RadioGroup
+                        border={
+                          emptyQuestions[questions.questionNumber - 1]
+                            ? '4px solid #FFBFB9'
+                            : 'none'
+                        }
+                        className="radio-group"
+                      >
                         <input
                           type="radio"
                           id="option-one"
@@ -196,7 +212,7 @@ const QuestionsForm: React.FC = () => {
                         >
                           5
                         </label>
-                      </div>
+                      </RadioGroup>
                     </li>
                   );
                 })}

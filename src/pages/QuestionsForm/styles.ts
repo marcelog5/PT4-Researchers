@@ -2,8 +2,12 @@ import styled from 'styled-components';
 
 import BackgroundImg from '../../assets/BackgroundBase.jpg';
 
-interface ContainerProps {
+interface ContaineButtonProps {
   display: string;
+}
+
+interface QuestionProps {
+  border: string;
 }
 
 export const Background = styled.div`
@@ -121,7 +125,12 @@ export const Container = styled.div`
   }
 `;
 
-export const ContainerButton = styled.div<ContainerProps>`
+export const RadioGroup = styled.div<QuestionProps>`
+  border: ${(props) => props.border};
+  border-radius: 16px;
+`;
+
+export const ContainerButton = styled.div<ContaineButtonProps>`
   display: ${(props) => props.display};
   padding: 0 60px;
 
