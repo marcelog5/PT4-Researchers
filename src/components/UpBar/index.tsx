@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-import { Header, Logo, Bar } from './styles';
+import { useAuth } from '../../hooks/Auth';
 
-const UpBar: React.FC = () => (
-  <Header>
-    <Logo>
-      <h1>Logo</h1>
-    </Logo>
-    <Bar></Bar>
-  </Header>
-);
+import { Header } from './styles';
+
+const UpBar: React.FC = () => {
+  const { signOut } = useAuth();
+
+  const HandleExitButton = useCallback(() => {
+    signOut();
+  }, [signOut]);
+
+  return (
+    <Header>
+      <div className="logo">
+        <h1>Logo</h1>
+      </div>
+      <div className="bar">
+        <ul>
+          <li>Perfil</li>
+          <li onClick={HandleExitButton}>Sair</li>
+        </ul>
+      </div>
+    </Header>
+  );
+};
 
 export default UpBar;

@@ -3,16 +3,36 @@ import styled from 'styled-components';
 export const Header = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
   height: 60px;
-`;
+  background-color: #cceff1;
 
-export const Logo = styled.div`
-  width: 10%;
-  background-color: #000;
-  color: white;
-`;
+  .logo {
+    background-color: black;
+    color: white;
+    padding: 0 20px;
+  }
 
-export const Bar = styled.div`
-  width: 90%;
-  background-color: #c4f1f2;
+  .bar {
+    display: flex;
+    align-items: center;
+    margin-right: 2%;
+    font-size: 24px;
+  }
+
+  .bar ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+
+  .bar ul li {
+    margin: 0 15px;
+    cursor: pointer;
+  }
+
+  .bar ul li:hover {
+    color: #ffbfb9;
+    transition: 0.5s;
+  }
 `;
