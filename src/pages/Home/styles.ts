@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import BackgroundImg from '../../assets/BackgroundBase.jpg';
 
+interface isAdmin {
+  display: string;
+}
+
 export const Background = styled.div`
   background-image: url(${BackgroundImg});
   background-repeat: no-repeat;
@@ -13,7 +17,10 @@ export const Background = styled.div`
   justify-content: center;
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<isAdmin>`
+  display: ${(props) => props.display};
+  justify-content: center;
+  text-align: center;
   max-width: 1440px;
   width: 100%;
   margin-top: 100px;
@@ -21,14 +28,34 @@ export const Container = styled.div`
   section {
     display: flex;
     justify-content: left;
-    flex-wrap: wrap;
+  }
+
+  .buttonContainer section {
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    background-color: rgba(235, 235, 235, 0.8);
+    margin: 30px 2%;
+    padding: 20px 0;
+    border-radius: 50px;
+  }
+
+  .buttonContainer section > div:last-of-type {
+    margin-top: 32px;
   }
 
   .card {
     margin: 20px 10px;
     min-width: 300px;
-    height: auto;
+    max-height: 200px;
     text-align: center;
+  }
+
+  .card-text ul {
+    list-style: none;
   }
 
   .addForm {

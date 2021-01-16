@@ -12,6 +12,9 @@ export default createGlobalStyle`
     color: #000;
     -webkit-font-smoothing: antialiased;
   }
+  body > div > div:last-of-type {
+    display: none;
+  }
   body, input, button {
     font: 16px 'Roboto Slab', sans-serif;
     font-size: 16px;

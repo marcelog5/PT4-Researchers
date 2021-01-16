@@ -71,7 +71,39 @@ const Home: React.FC = () => {
       <UpBar></UpBar>
 
       <Background>
-        <Container>
+        <Container
+          display={
+            userData !== undefined
+              ? userData.isAdmin
+                ? 'flex'
+                : 'none'
+              : 'none'
+          }
+        >
+          <div className="buttonContainer">
+            <section>
+              <div>
+                <h3>Visualizar todas as pesquisas:</h3>
+                <ButtonDefault>Pesquisas</ButtonDefault>
+              </div>
+
+              <div>
+                <h3>Visualizar todos os pesquisadores:</h3>
+                <ButtonDefault>Pesquisadores</ButtonDefault>
+              </div>
+            </section>
+          </div>
+        </Container>
+
+        <Container
+          display={
+            userData !== undefined
+              ? userData.isAdmin
+                ? 'none'
+                : 'flex'
+              : 'unset'
+          }
+        >
           <section className="card-sections">
             <Card>
               <Card.Header>Crie um formulário</Card.Header>
@@ -88,10 +120,14 @@ const Home: React.FC = () => {
                   <Card.Header>{form.name}</Card.Header>
 
                   <Card.Body>
-                    <Card.Text>
-                      <p>Criado em: {form.created_at.substring(0, 10)}</p>
-                      <p>Atualizado em: {form.updated_at.substring(0, 10)}</p>
-                    </Card.Text>
+                    <div className="card-text">
+                      <ul>
+                        <li>Criado em: {form.created_at.substring(0, 10)}</li>
+                        <li>
+                          Atualizado em: {form.updated_at.substring(0, 10)}
+                        </li>
+                      </ul>
+                    </div>
 
                     <Link
                       to={{
