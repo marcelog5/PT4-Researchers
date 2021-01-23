@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../services/api';
 
 interface SignInCredentials {
@@ -48,6 +49,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
     return {} as AuthState;
   });
+  const history = useHistory();
 
   const signIn = useCallback(async ({ email, password }) => {
     const response = await api.post('sessions', {
@@ -68,7 +70,9 @@ const AuthProvider: React.FC = ({ children }) => {
     localStorage.removeItem('@PT4:user');
 
     setData({} as AuthState);
-  }, []);
+
+    history.push('/');
+  }, [history]);
 
   return (
     <AuthContext.Provider
