@@ -68,9 +68,9 @@ export const Content = styled.div<ContentProps>`
     }
 
     button {
-      margin: 10px 0;
       height: 38px;
-      width: 300px;
+      width: 200px;
+      margin: 10px 20px;
       line-height: 38px;
       border-radius: 20px;
     }
@@ -78,6 +78,11 @@ export const Content = styled.div<ContentProps>`
     div#texto div {
       display: ${(props) => props.display};
     }
+  }
+
+  .ButtonContainer {
+    display: flex;
+    justify-content: space-between;
   }
 
   a {
@@ -91,6 +96,12 @@ export const Content = styled.div<ContentProps>`
     color: ${shade(0.2, '#FFBFB9')};
   }
 
+  @media screen and (max-width: 1000px) {
+    button {
+      max-width: 150px;
+    }
+  }
+
   @media screen and (max-width: 640px) {
     button {
       margin: 10px 0;
@@ -99,6 +110,12 @@ export const Content = styled.div<ContentProps>`
       max-width: 200px;
       line-height: 38px;
       border-radius: 20px;
+    }
+
+    .ButtonContainer {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
     }
   }
 `;
