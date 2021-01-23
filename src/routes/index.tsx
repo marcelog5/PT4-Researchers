@@ -17,6 +17,7 @@ import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
 import FormData from '../pages/FormData';
 import AddForm from '../pages/AddForm';
+import Profile from '../pages/Profile';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -37,6 +38,7 @@ const Routes: React.FC = () => (
     <Route path="/home" component={Home} isPrivate />
     <Route path="/formdata" component={FormData} isPrivate />
     <Route path="/addform" component={AddForm} isPrivate />
+    <Route path="/profile" component={Profile} isPrivate />
   </Switch>
 );
 

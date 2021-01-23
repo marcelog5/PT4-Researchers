@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/Auth';
 
@@ -18,7 +19,9 @@ const UpBar: React.FC = () => {
       </div>
       <div className="bar">
         <ul>
-          <li>Perfil</li>
+          <li>
+            <Link to="/profile">Perfil</Link>
+          </li>
           <li onClick={HandleExitButton}>Sair</li>
         </ul>
       </div>

@@ -31,7 +31,17 @@ export const Header = styled.div`
     cursor: pointer;
   }
 
+  .bar ul li a {
+    text-decoration: none;
+    color: black;
+  }
+
   .bar ul li:hover {
+    color: #ffbfb9;
+    transition: 0.5s;
+  }
+
+  .bar ul li a:hover {
     color: #ffbfb9;
     transition: 0.5s;
   }
