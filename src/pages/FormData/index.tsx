@@ -56,6 +56,12 @@ interface RespondentData {
 }
 
 const FormData: React.FC = () => {
+  const [agreeableness, setAgreeableness] = useState<number[]>([]);
+  const [extraversion, setExtraversion] = useState<number[]>([]);
+  const [conscientiousness, setConscientiousness] = useState<number[]>([]);
+  const [neuroticism, setNeuroticism] = useState<number[]>([]);
+  const [openness, setOpenness] = useState<number[]>([]);
+
   const location = useLocation<FormPass>();
   const form = location.state.Form;
   const history = useHistory();
@@ -75,6 +81,76 @@ const FormData: React.FC = () => {
     });
   }, [form.id, userToken]);
 
+  useEffect(() => {
+    if (respondentsData.length !== 0) {
+      setExtraversion([]);
+      setConscientiousness([]);
+      setAgreeableness([]);
+      setOpenness([]);
+      setNeuroticism([]);
+
+      let extraversionArray: number[] = [];
+      let conscientiousnessArray: number[] = [];
+      let agreeablenessArray: number[] = [];
+      let opennessArray: number[] = [];
+      let neuroticismArray: number[] = [];
+
+      respondentsData.forEach((respondentData) => {
+        let extraversionSum = 0;
+        let conscientiousnessSum = 0;
+        let agreeablenessSum = 0;
+        let opennessSum = 0;
+        let neuroticismSum = 0;
+
+        for (let i = 0; i < respondentData.questionsAnswer.length; i++) {
+          switch (form.inventory.questions[i].trait) {
+            case 'Extroversão':
+              extraversionSum +=
+                respondentData.questionsAnswer[i] *
+                (form.inventory.questions[i].inverted ? -1 : 1);
+              break;
+
+            case 'Conscienciosidade':
+              conscientiousnessSum +=
+                respondentData.questionsAnswer[i] *
+                (form.inventory.questions[i].inverted ? -1 : 1);
+              break;
+
+            case 'Amabilidade':
+              agreeablenessSum +=
+                respondentData.questionsAnswer[i] *
+                (form.inventory.questions[i].inverted ? -1 : 1);
+              break;
+
+            case 'Abertura à experiência':
+              opennessSum +=
+                respondentData.questionsAnswer[i] *
+                (form.inventory.questions[i].inverted ? -1 : 1);
+              break;
+
+            case 'Neuroticismo':
+              neuroticismSum +=
+                respondentData.questionsAnswer[i] *
+                (form.inventory.questions[i].inverted ? -1 : 1);
+              break;
+          }
+        }
+
+        extraversionArray.push(extraversionSum);
+        conscientiousnessArray.push(conscientiousnessSum);
+        agreeablenessArray.push(agreeablenessSum);
+        opennessArray.push(opennessSum);
+        neuroticismArray.push(neuroticismSum);
+      });
+
+      setExtraversion(extraversionArray);
+      setConscientiousness(conscientiousnessArray);
+      setAgreeableness(agreeablenessArray);
+      setOpenness(opennessArray);
+      setNeuroticism(neuroticismArray);
+    }
+  }, [respondentsData, form]);
+
   const handleExportButton = useCallback(async () => {
     try {
       let data = [];
@@ -86,6 +162,11 @@ const FormData: React.FC = () => {
           Escolaridade: respondentsData[i].schooling,
           Estado: respondentsData[i].state,
           Realizado: respondentsData[i].created_at,
+          Extroversao: extraversion[i],
+          Conscienciosidade: conscientiousness[i],
+          Amabilidade: agreeableness[i],
+          Abertura_a_experiencia: openness[i],
+          Neuroticismo: neuroticism[i],
           Respostas: respondentsData[i].questionsAnswer.toString(),
         };
       }
@@ -116,7 +197,15 @@ const FormData: React.FC = () => {
         description: 'Ocorreu um erro ao exportar o formulário!',
       });
     }
-  }, [addToast, respondentsData]);
+  }, [
+    addToast,
+    respondentsData,
+    extraversion,
+    conscientiousness,
+    agreeableness,
+    openness,
+    neuroticism,
+  ]);
 
   const handleDeleteButton = useCallback(async () => {
     try {
@@ -183,11 +272,15 @@ const FormData: React.FC = () => {
                     <th>Escolaridade</th>
                     <th>Estado</th>
                     <th>Realizado</th>
-                    <th>Score médio</th>
+                    <th>Extroversão</th>
+                    <th>Conscienciosidade</th>
+                    <th>Amabilidade</th>
+                    <th>Abertura à experiência</th>
+                    <th>Neuroticismo</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {respondentsData.map((respondent) => {
+                  {respondentsData.map((respondent, index) => {
                     return (
                       <tr key={respondent.id}>
                         <td>{respondent.age.substring(0, 10)}</td>
@@ -195,7 +288,11 @@ const FormData: React.FC = () => {
                         <td>{respondent.schooling}</td>
                         <td>{respondent.state}</td>
                         <td>{respondent.created_at.substring(0, 10)}</td>
-                        <td>20</td>
+                        <td>{extraversion[index]}</td>
+                        <td>{conscientiousness[index]}</td>
+                        <td>{agreeableness[index]}</td>
+                        <td>{openness[index]}</td>
+                        <td>{neuroticism[index]}</td>
                       </tr>
                     );
                   })}
