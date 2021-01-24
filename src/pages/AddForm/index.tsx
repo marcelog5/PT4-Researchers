@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
@@ -116,7 +116,13 @@ const AddForm: React.FC = () => {
               placeholder="Termos do formulário"
             />
 
-            <ButtonDefault type="submit">Criar!</ButtonDefault>
+            <section className="buttonContainer">
+              <Link to="/">
+                <ButtonDefault>Voltar</ButtonDefault>
+              </Link>
+
+              <ButtonDefault type="submit">Criar!</ButtonDefault>
+            </section>
           </Form>
         </Container>
       </Background>

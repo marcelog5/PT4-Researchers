@@ -6,13 +6,7 @@ import React, {
   useRef,
 } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import {
-  FiMail,
-  FiUser,
-  FiCalendar,
-  FiBookOpen,
-  FiMapPin,
-} from 'react-icons/fi';
+import { FiUser, FiCalendar, FiBookOpen, FiMapPin } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
@@ -118,7 +112,7 @@ const Profile: React.FC = () => {
         let postData = {
           id: userData.id,
           name: data.name,
-          email: data.email,
+          email: userData.email,
           gender: data.gender,
           age: data.date,
           institution: data.institution,
@@ -193,8 +187,6 @@ const Profile: React.FC = () => {
               <h1>Atualize o seu perfil</h1>
 
               <Input name="name" icon={FiUser} placeholder="Nome" />
-
-              <Input name="email" icon={FiMail} placeholder="E-mail" />
 
               <Input
                 name="date"

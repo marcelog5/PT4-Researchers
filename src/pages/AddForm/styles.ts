@@ -34,15 +34,38 @@ export const Container = styled.div`
     margin-bottom: 32px;
   }
 
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  button {
+    width: 180px;
+    margin: 10px 20px;
+  }
+
   @media screen and (max-width: 1000px) {
     max-width: 500px;
 
     p {
       font-size: 14px;
     }
+
+    button {
+      max-width: 150px;
+    }
   }
 
   @media screen and (max-width: 640px) {
     max-width: 400px;
+
+    .buttonContainer {
+      flex-direction: column;
+    }
+
+    button {
+      max-width: 220px;
+    }
   }
 `;

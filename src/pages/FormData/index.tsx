@@ -226,6 +226,11 @@ const FormData: React.FC = () => {
 
       history.push('/');
     } catch (err) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
       addToast({
         type: 'error',
         title: 'Erro no cadastro',
