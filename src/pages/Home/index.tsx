@@ -126,6 +126,7 @@ const Home: React.FC = () => {
                         <li>
                           Atualizado em: {form.updated_at.substring(0, 10)}
                         </li>
+                        <li>link: homeform/{form.id}</li>
                       </ul>
                     </div>
 
