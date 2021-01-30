@@ -15,6 +15,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { Background, Container } from './styles';
 
 import Input from '../../components/input';
+import TextArea from '../../components/TextArea';
 import UpBar from '../../components/UpBar';
 import DownBar from '../../components/DownBar';
 import ButtonDefault from '../../components/ButtonDefault';
@@ -55,7 +56,7 @@ const AddForm: React.FC = () => {
           name: data.name,
           link: data.link,
           term: data.term,
-          inventory_id: 'ef523bcc-b3d1-44d5-b726-4bf7e97bdc04',
+          inventory_id: '14bb378e-7a8c-497a-a3f9-d75906b4d31b',
           user_id: userData.id,
         };
 
@@ -109,8 +110,7 @@ const AddForm: React.FC = () => {
               placeholder="Link dos termos do formulário"
             />
 
-            <Input
-              type="text"
+            <TextArea
               name="term"
               icon={FiFolder}
               placeholder="Termos do formulário"

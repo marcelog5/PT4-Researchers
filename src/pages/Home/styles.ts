@@ -49,8 +49,8 @@ export const Container = styled.div<isAdmin>`
 
   .card {
     margin: 20px 10px;
-    min-width: 300px;
-    max-height: 200px;
+    width: 325px;
+    max-height: 220px;
     text-align: center;
   }
 
