@@ -30,6 +30,12 @@ export const Container = styled.div<isAdmin>`
     justify-content: left;
   }
 
+  .copyButton {
+    width: 35px;
+    height: 35px;
+    border-radius: 18px;
+  }
+
   .buttonContainer section {
     display: flex;
     flex-direction: column;
