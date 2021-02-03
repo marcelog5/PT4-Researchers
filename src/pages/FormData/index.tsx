@@ -122,43 +122,11 @@ const FormData: React.FC = () => {
     } catch (err) {
       addToast({
         type: 'error',
-        title: 'Erro no cadastro',
+        title: 'Erro',
         description: 'Ocorreu um erro ao exportar o formulário!',
       });
     }
   }, [addToast, respondentsData]);
-
-  const handleDeleteButton = useCallback(async () => {
-    try {
-      if (respondentsData.length !== 0) {
-        throw new Error();
-      }
-
-      const config = {
-        headers: { Authorization: `Bearer ${userToken}` },
-      };
-
-      await api.delete(`forms/${form.id}`, config);
-
-      addToast({
-        type: 'success',
-        title: 'Formulário deletado!',
-      });
-
-      history.push('/');
-    } catch (err) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-
-      addToast({
-        type: 'error',
-        title: 'Erro no cadastro',
-        description: 'Ocorreu um erro ao apagar o formulário!',
-      });
-    }
-  }, [addToast, form, history, respondentsData, userToken]);
 
   return (
     <>
@@ -231,8 +199,6 @@ const FormData: React.FC = () => {
             <Link to="/">
               <ButtonDefault>Voltar</ButtonDefault>
             </Link>
-
-            <ButtonDefault onClick={handleDeleteButton}>Apagar</ButtonDefault>
 
             <ButtonDefault onClick={handleExportButton}>Exportar</ButtonDefault>
           </section>
