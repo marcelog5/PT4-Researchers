@@ -20,6 +20,7 @@ import FormData from '../pages/FormData';
 import AddForm from '../pages/AddForm';
 import EditForm from '../pages/EditForm';
 import Profile from '../pages/Profile';
+import ChangePasswordForm from '../pages/ChangePasswordForm';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -43,6 +44,11 @@ const Routes: React.FC = () => (
     <Route path="/addform" component={AddForm} isPrivate />
     <Route path="/editform" component={EditForm} isPrivate />
     <Route path="/profile" component={Profile} isPrivate />
+    <Route
+      path="/changepasswordform"
+      component={ChangePasswordForm}
+      isPrivate
+    />
   </Switch>
 );
 

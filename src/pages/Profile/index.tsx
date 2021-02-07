@@ -266,7 +266,7 @@ const Profile: React.FC = () => {
                 <ButtonDefault type="submit">Atualizar</ButtonDefault>
               </section>
 
-              <Link to="/">Deseja Alterar sua senha?</Link>
+              <Link to="/changepasswordform">Deseja Alterar sua senha?</Link>
             </Form>
           </Content>
         </Container>
