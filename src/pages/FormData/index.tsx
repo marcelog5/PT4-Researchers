@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ExportToCsv } from 'export-to-csv';
 
@@ -63,7 +63,6 @@ interface RespondentData {
 const FormData: React.FC = () => {
   const location = useLocation<FormPass>();
   const form = location.state.Form;
-  const history = useHistory();
 
   const { userToken } = useAuth();
   const { addToast } = useToast();

@@ -13,6 +13,7 @@ import TutorialForm from '../pages/TutorialForm';
 
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import ForgotPasswordForm from '../pages/ForgotPasswordForm';
 
 import Home from '../pages/Home';
 import FormData from '../pages/FormData';
@@ -24,6 +25,7 @@ const Routes: React.FC = () => (
   <Switch>
     <Route path="/" component={SignIn} authAuto exact />
     <Route path="/signup" component={SignUp} authAuto />
+    <Route path="/forgotpasswordform" component={ForgotPasswordForm} authAuto />
 
     <Route path="/homeform/:id" component={HomeForm} />
     <Route path="/consentform" component={ConsentForm} />
