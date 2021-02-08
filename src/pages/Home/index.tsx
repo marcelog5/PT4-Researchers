@@ -1,7 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { FiPlusCircle, FiCopy } from 'react-icons/fi';
+import {
+  FiPlusCircle,
+  FiCopy,
+  FiExternalLink,
+  FiEye,
+  FiEdit,
+  FiTrash2,
+  FiInfo,
+} from 'react-icons/fi';
 import { Card } from 'react-bootstrap';
 
 import api from '../../services/api';
@@ -211,23 +219,29 @@ const Home: React.FC = () => {
                         <li>
                           <ButtonDefault
                             className="copyButton"
-                            icon={FiCopy}
+                            icon={FiInfo}
+                          ></ButtonDefault>
+                        </li>
+                        <li>
+                          <ButtonDefault
+                            className="copyButton"
+                            icon={FiExternalLink}
                             onClick={() => handleCopyButton(form.id)}
                           ></ButtonDefault>
                         </li>
                         <li>
                           <ButtonDefault
+                            className="copyButton"
+                            icon={FiCopy}
                             onClick={() => handleCopyFormButton(form)}
-                          >
-                            Duplicar
-                          </ButtonDefault>
+                          ></ButtonDefault>
                         </li>
                         <li>
                           <ButtonDefault
+                            className="copyButton"
+                            icon={FiTrash2}
                             onClick={() => handleDeleteButton(form.id)}
-                          >
-                            Deletar
-                          </ButtonDefault>
+                          ></ButtonDefault>
                         </li>
                         <li>
                           <Link
@@ -238,7 +252,10 @@ const Home: React.FC = () => {
                               },
                             }}
                           >
-                            <ButtonDefault>Editar</ButtonDefault>
+                            <ButtonDefault
+                              className="copyButton"
+                              icon={FiEdit}
+                            ></ButtonDefault>
                           </Link>
                         </li>
                         <li>
@@ -250,7 +267,10 @@ const Home: React.FC = () => {
                               },
                             }}
                           >
-                            <ButtonDefault>Visualizar</ButtonDefault>
+                            <ButtonDefault
+                              className="copyButton"
+                              icon={FiEye}
+                            ></ButtonDefault>
                           </Link>
                         </li>
                       </ul>
