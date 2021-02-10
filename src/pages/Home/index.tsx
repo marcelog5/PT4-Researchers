@@ -12,6 +12,8 @@ import {
 } from 'react-icons/fi';
 import { Card } from 'react-bootstrap';
 
+import Tooltip from '../../components/Tooltip';
+
 import api from '../../services/api';
 
 import { useAuth } from '../../hooks/Auth';
@@ -216,62 +218,70 @@ const Home: React.FC = () => {
                         <li>
                           Atualizado em: {form.updated_at.substring(0, 10)}
                         </li>
-                        <li>
-                          <ButtonDefault
-                            className="copyButton"
-                            icon={FiInfo}
-                          ></ButtonDefault>
-                        </li>
-                        <li>
-                          <ButtonDefault
-                            className="copyButton"
-                            icon={FiExternalLink}
-                            onClick={() => handleCopyButton(form.id)}
-                          ></ButtonDefault>
-                        </li>
-                        <li>
-                          <ButtonDefault
-                            className="copyButton"
-                            icon={FiCopy}
-                            onClick={() => handleCopyFormButton(form)}
-                          ></ButtonDefault>
-                        </li>
-                        <li>
-                          <ButtonDefault
-                            className="copyButton"
-                            icon={FiTrash2}
-                            onClick={() => handleDeleteButton(form.id)}
-                          ></ButtonDefault>
-                        </li>
-                        <li>
-                          <Link
-                            to={{
-                              pathname: '/editform',
-                              state: {
-                                Form: form,
-                              },
-                            }}
-                          >
+                        <li className="icon-button-container">
+                          <Tooltip title="Alguma coisa">
                             <ButtonDefault
                               className="copyButton"
-                              icon={FiEdit}
+                              icon={FiInfo}
                             ></ButtonDefault>
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to={{
-                              pathname: '/formdata',
-                              state: {
-                                Form: form,
-                              },
-                            }}
-                          >
+                          </Tooltip>
+
+                          <Tooltip title="Copiar link do formulário">
                             <ButtonDefault
                               className="copyButton"
-                              icon={FiEye}
+                              icon={FiExternalLink}
+                              onClick={() => handleCopyButton(form.id)}
                             ></ButtonDefault>
-                          </Link>
+                          </Tooltip>
+
+                          <Tooltip title="Replicar formulário">
+                            <ButtonDefault
+                              className="copyButton"
+                              icon={FiCopy}
+                              onClick={() => handleCopyFormButton(form)}
+                            ></ButtonDefault>
+                          </Tooltip>
+                        </li>
+                        <li className="icon-button-container">
+                          <Tooltip title="Deletar formulário">
+                            <ButtonDefault
+                              className="copyButton"
+                              icon={FiTrash2}
+                              onClick={() => handleDeleteButton(form.id)}
+                            ></ButtonDefault>
+                          </Tooltip>
+
+                          <Tooltip title="Editar formulário">
+                            <Link
+                              to={{
+                                pathname: '/editform',
+                                state: {
+                                  Form: form,
+                                },
+                              }}
+                            >
+                              <ButtonDefault
+                                className="copyButton"
+                                icon={FiEdit}
+                              ></ButtonDefault>
+                            </Link>
+                          </Tooltip>
+
+                          <Tooltip title="Visualizar formulário">
+                            <Link
+                              to={{
+                                pathname: '/formdata',
+                                state: {
+                                  Form: form,
+                                },
+                              }}
+                            >
+                              <ButtonDefault
+                                className="copyButton"
+                                icon={FiEye}
+                              ></ButtonDefault>
+                            </Link>
+                          </Tooltip>
                         </li>
                       </ul>
                     </div>

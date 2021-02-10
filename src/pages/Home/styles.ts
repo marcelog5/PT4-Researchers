@@ -30,9 +30,18 @@ export const Container = styled.div<isAdmin>`
     justify-content: left;
   }
 
+  span {
+    background-color: #CCEFF1;
+
+    &::before {
+        border-color: #CCEFF1 transparent;
+    }
+  }
+
   .copyButton {
     width: 35px;
     height: 35px;
+    margin-bottom: 5px;
     border-radius: 18px;
   }
 
@@ -56,7 +65,7 @@ export const Container = styled.div<isAdmin>`
   .card {
     margin: 20px 10px;
     width: 325px;
-    max-height: 220px;
+    max-height: 250px;
     text-align: center;
   }
 
@@ -72,6 +81,13 @@ export const Container = styled.div<isAdmin>`
 
   .addForm svg {
     color: #66cabc;
+  }
+
+  .icon-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20%;
   }
 
   @media screen and (max-width: 1000px) {
