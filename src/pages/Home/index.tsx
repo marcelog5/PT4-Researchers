@@ -209,79 +209,72 @@ const Home: React.FC = () => {
             {formsData.map((form) => {
               return (
                 <Card key={form.id}>
-                  <Card.Header>{form.name}</Card.Header>
+                  <Card.Header className="headTitle">
+                    {form.name}
+
+                    <Tooltip
+                      title={`Criação: ${form.created_at.substring(0, 10)}
+                      Atualização: ${form.updated_at.substring(0, 10)}`}
+                    >
+                      <ButtonDefault
+                        className="copyButton"
+                        icon={FiInfo}
+                      ></ButtonDefault>
+                    </Tooltip>
+                  </Card.Header>
 
                   <Card.Body>
                     <div className="card-text">
                       <ul>
-                        <li>Criado em: {form.created_at.substring(0, 10)}</li>
                         <li>
-                          Atualizado em: {form.updated_at.substring(0, 10)}
+                          <Link
+                            to={{
+                              pathname: '/formdata',
+                              state: {
+                                Form: form,
+                              },
+                            }}
+                          >
+                            <ButtonDefault icon={FiEye}>
+                              Visualizar
+                            </ButtonDefault>
+                          </Link>
                         </li>
-                        <li className="icon-button-container">
-                          <Tooltip title="Alguma coisa">
-                            <ButtonDefault
-                              className="copyButton"
-                              icon={FiInfo}
-                            ></ButtonDefault>
-                          </Tooltip>
 
-                          <Tooltip title="Copiar link do formulário">
+                        <li>
+                          <Link
+                            to={{
+                              pathname: '/editform',
+                              state: {
+                                Form: form,
+                              },
+                            }}
+                          >
+                            <ButtonDefault icon={FiEdit}>Editar</ButtonDefault>
+                          </Link>
+                        </li>
+
+                        <li>
+                          <ButtonDefault
+                            icon={FiCopy}
+                            onClick={() => handleCopyFormButton(form)}
+                          >
+                            Duplicar
+                          </ButtonDefault>
+                        </li>
+
+                        <li>
                             <ButtonDefault
-                              className="copyButton"
                               icon={FiExternalLink}
                               onClick={() => handleCopyButton(form.id)}
-                            ></ButtonDefault>
-                          </Tooltip>
-
-                          <Tooltip title="Replicar formulário">
-                            <ButtonDefault
-                              className="copyButton"
-                              icon={FiCopy}
-                              onClick={() => handleCopyFormButton(form)}
-                            ></ButtonDefault>
-                          </Tooltip>
+                            >Copiar link</ButtonDefault>
                         </li>
-                        <li className="icon-button-container">
-                          <Tooltip title="Deletar formulário">
+
+                        <li>
                             <ButtonDefault
-                              className="copyButton"
                               icon={FiTrash2}
                               onClick={() => handleDeleteButton(form.id)}
-                            ></ButtonDefault>
-                          </Tooltip>
-
-                          <Tooltip title="Editar formulário">
-                            <Link
-                              to={{
-                                pathname: '/editform',
-                                state: {
-                                  Form: form,
-                                },
-                              }}
-                            >
-                              <ButtonDefault
-                                className="copyButton"
-                                icon={FiEdit}
-                              ></ButtonDefault>
-                            </Link>
-                          </Tooltip>
-
-                          <Tooltip title="Visualizar formulário">
-                            <Link
-                              to={{
-                                pathname: '/formdata',
-                                state: {
-                                  Form: form,
-                                },
-                              }}
-                            >
-                              <ButtonDefault
-                                className="copyButton"
-                                icon={FiEye}
-                              ></ButtonDefault>
-                            </Link>
-                          </Tooltip>
+                            >Deletar</ButtonDefault>
                         </li>
                       </ul>
                     </div>

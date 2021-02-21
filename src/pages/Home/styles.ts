@@ -65,7 +65,7 @@ export const Container = styled.div<isAdmin>`
   .card {
     margin: 20px 10px;
     width: 325px;
-    max-height: 250px;
+    max-height: 310px;
     text-align: center;
   }
 
@@ -88,6 +88,22 @@ export const Container = styled.div<isAdmin>`
     flex-direction: row;
     justify-content: space-between;
     padding: 0 20%;
+  }
+
+  .headTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .headTitle .copyButton{
+    margin: 0;
+  }
+
+  .copyButton svg{
+    position:absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   @media screen and (max-width: 1000px) {

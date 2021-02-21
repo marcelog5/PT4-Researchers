@@ -4,6 +4,7 @@ import { shade } from 'polished';
 
 export const Button = styled.div`
   button {
+    position: relative;
     width: 170px;
     margin-top: 15px;
     line-height: 24px;
