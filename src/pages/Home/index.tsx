@@ -120,7 +120,7 @@ const Home: React.FC = () => {
         });
       }
     },
-    [addToast, history, userData.id, userToken],
+    [addToast, history, userData, userToken],
   );
 
   const handleDeleteButton = useCallback(
@@ -176,7 +176,9 @@ const Home: React.FC = () => {
             <section>
               <div>
                 <h3>Visualizar todas as pesquisas:</h3>
-                <ButtonDefault>Pesquisas</ButtonDefault>
+                <Link to="/allforms">
+                  <ButtonDefault>Pesquisas</ButtonDefault>
+                </Link>
               </div>
 
               <div>
@@ -264,17 +266,21 @@ const Home: React.FC = () => {
                         </li>
 
                         <li>
-                            <ButtonDefault
-                              icon={FiExternalLink}
-                              onClick={() => handleCopyButton(form.id)}
-                            >Copiar link</ButtonDefault>
+                          <ButtonDefault
+                            icon={FiExternalLink}
+                            onClick={() => handleCopyButton(form.id)}
+                          >
+                            Copiar link
+                          </ButtonDefault>
                         </li>
 
                         <li>
-                            <ButtonDefault
-                              icon={FiTrash2}
-                              onClick={() => handleDeleteButton(form.id)}
-                            >Deletar</ButtonDefault>
+                          <ButtonDefault
+                            icon={FiTrash2}
+                            onClick={() => handleDeleteButton(form.id)}
+                          >
+                            Deletar
+                          </ButtonDefault>
                         </li>
                       </ul>
                     </div>

@@ -22,6 +22,8 @@ import EditForm from '../pages/EditForm';
 import Profile from '../pages/Profile';
 import ChangePasswordForm from '../pages/ChangePasswordForm';
 
+import AllForms from '../pages/AllForms';
+
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" component={SignIn} authAuto exact />
@@ -49,6 +51,8 @@ const Routes: React.FC = () => (
       component={ChangePasswordForm}
       isPrivate
     />
+
+    <Route path="/allforms" component={AllForms} isPrivate />
   </Switch>
 );
 
